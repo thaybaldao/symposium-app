@@ -30,3 +30,34 @@ ul#nav li a:active {
 ul#nav li.current a {
   color: 	#cf8484;
 }
+
+.foot {
+  background-color: #d35f5f;
+  position: relative;
+  bottom: 0px;
+}
+
+.white {
+  color: white;
+  font-size: 1em;
+}
+
+.ita {
+  width: 100px;
+  position: relative;
+  bottom: 5px;
+  right: 12px;
+}
+
+.itaex {
+  width: 100px;
+  position: relative;
+  bottom: -20px;
+}
+
+.johnson {
+  width: 50px;
+  position: relative;
+  bottom: 5px;
+  left: 12px;
+}

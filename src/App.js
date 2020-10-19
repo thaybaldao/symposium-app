@@ -3,6 +3,8 @@ import ReactGA from 'react-ga';
 import $ from 'jquery';
 import './App.css';
 import Header from './Components/Header';
+import ShowMap from './Components/Map';
+import Footer from './Components/Footer';
 
 class App extends Component {
 
@@ -41,6 +43,8 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
+        <ShowMap />
+        <Footer data={this.state.resumeData.main}/>
       </div>
     );
   }

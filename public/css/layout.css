@@ -926,11 +926,11 @@ call-to-action .button {
 
 footer {
    padding-top: 48px;
-   margin-bottom: 48px;
+
    color: #303030;
-   font-size: 14px;
+   bottom: 0px;
    text-align: center;
-   position: relative;
+   position: absolute;
 }
 
 footer a, footer a:visited { color: #525252; }
@@ -954,7 +954,8 @@ footer .copyright li:before {
     content: "\2022";
     padding-left: 10px;
     padding-right: 10px;
-    color: #095153;
+    color: #550000;
+    font-size: 35px;
 }
 footer .copyright  li:first-child:before {
     display: none;
@@ -981,7 +982,7 @@ footer .social-links li:first-child { margin-left: 0; }
 	position: absolute;
 	top: -24px;
    left: 50%;
-   margin-left: -30px;
+   margin-left: -35px;
 }
 #go-top a {
 	text-decoration: none;
@@ -989,7 +990,7 @@ footer .social-links li:first-child { margin-left: 0; }
 	display: block;
 	width: 60px;
 	height: 60px;
-	background-color: #525252;
+	background-color: #550000;
 
 	-webkit-transition: all 0.2s ease-in-out;
    -moz-transition: all 0.2s ease-in-out;

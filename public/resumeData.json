@@ -1,5 +1,39 @@
 {
   "main": {
-    "name":"II Simpósio Mulheres em STEM"
-    }
+    "name":"II Simpósio Mulheres em STEM",
+    "social":[
+      {
+        "name":"facebook",
+        "url":"https://pt-br.facebook.com/mulheresstem2d/",
+        "className":"fa fa-facebook white"
+      },
+      {
+        "name":"youtube",
+        "url":"https://www.youtube.com/channel/UCx38jExdJcyhrmmf53oDIEg",
+        "className":"fa fa-youtube white"
+      },
+      {
+        "name":"instagram",
+        "url":"https://www.instagram.com/mulheresemstem2d/",
+        "className":"fa fa-instagram white"
+      }
+    ],
+    "support":[
+      {
+        "name":"ita",
+        "url":"http://www.ita.br/",
+        "image":"ita.png"
+      },
+      {
+        "name":"itaex",
+        "url":"https://itaex.com.br/",
+        "image":"itaex.png"
+      },
+      {
+        "name":"jonhson",
+        "url":"https://www.jnjbrasil.com.br/",
+        "image":"jj.png"
+      }
+    ]
+  }
 }
