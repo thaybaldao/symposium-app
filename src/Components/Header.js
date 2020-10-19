@@ -23,13 +23,13 @@ class Header extends Component {
       <div className="row banner">
 
          <div className="banner-text">
-            <img src={require('../Images/banner.png')}  />
+            <img src={require('../Images/banner.png')}  alt="banner"/>
             <a href="#inscricao" className="button btn register-btn">Inscrever-se</a>
          </div>
       </div>
 
       <p className="scrolldown">
-         <a className="smoothscroll" href="#sobre"><i class="fa fa-arrow-circle-down" aria-hidden="true"></i></a>
+         <a className="smoothscroll" href="#sobre"><i className="fa fa-arrow-circle-down" aria-hidden="true"></i></a>
       </p>
 
    </header>
