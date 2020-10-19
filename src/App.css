@@ -1,11 +1,3 @@
-.navBar{
-  background-color: #560707;
-}
-
-.header{
-  background-color: #FFFFFF;
-}
-
 .fa-arrow-circle-down {
   color: #560707;
 }
@@ -15,12 +7,12 @@
 }
 
 .register-btn{
-   background-color: #560707;
+   background-color: #560707  !important;
    border-radius: 10px;
 }
 
 .register-btn:hover{
-   background-color: #d25d5d;
+   background-color: #d25d5d !important;
 }
 
 ul#nav li a:active {
@@ -31,13 +23,54 @@ ul#nav li.current a {
   color: 	#cf8484;
 }
 
+.darkRed{
+  background-color: #560707;
+  color: #FFFFFF;
+}
+
+.lightRed{
+  background-color: #b72c2c;
+  color: #FFFFFF;
+}
+
+.darkPink{
+  background-color: #d25d5d;
+  color: #FFFFFF;
+}
+
+.lightPink{
+  background-color: #d39898;
+  color: #FFFFFF;
+}
+
+.white{
+  background-color: #FFFFFF;
+  color: #560707;
+}
+
+.section {
+   padding-top: 96px;
+   padding-bottom: 66px;
+   overflow: hidden;
+}
+
+.section h2 {
+   font: 22px/30px 'opensans-bold', sans-serif;
+   margin-bottom: 12px;
+}
+.section p {
+   line-height: 30px;
+}
+
+.section .main-col { padding-right: 5%; }
+
 .foot {
   background-color: #d35f5f;
   position: relative;
   bottom: 0px;
 }
 
-.white {
+.whitelogo {
   color: white;
   font-size: 1em;
 }

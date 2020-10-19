@@ -5,17 +5,17 @@
       {
         "name":"facebook",
         "url":"https://pt-br.facebook.com/mulheresstem2d/",
-        "className":"fa fa-facebook white"
+        "className":"fa fa-facebook whitelogo"
       },
       {
         "name":"youtube",
         "url":"https://www.youtube.com/channel/UCx38jExdJcyhrmmf53oDIEg",
-        "className":"fa fa-youtube white"
+        "className":"fa fa-youtube whitelogo"
       },
       {
         "name":"instagram",
         "url":"https://www.instagram.com/mulheresemstem2d/",
-        "className":"fa fa-instagram white"
+        "className":"fa fa-instagram whitelogo"
       }
     ],
     "support":[

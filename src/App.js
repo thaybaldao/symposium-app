@@ -2,7 +2,13 @@ import React, { Component } from 'react';
 import ReactGA from 'react-ga';
 import $ from 'jquery';
 import './App.css';
+import About from './Components/About';
+import Contact from './Components/Contact';
+import Faq from './Components/Faq';
 import Header from './Components/Header';
+import Register from './Components/Register';
+import Schedule from './Components/Schedule';
+import Speakers from './Components/Speakers';
 import ShowMap from './Components/Map';
 import Footer from './Components/Footer';
 
@@ -43,6 +49,12 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
+        <About />
+        <Speakers />
+        <Schedule />
+        <Faq />
+        <Register />
+        <Contact />
         <ShowMap />
         <Footer data={this.state.resumeData.main}/>
       </div>
