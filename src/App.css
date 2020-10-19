@@ -1,3 +1,32 @@
 .navBar{
-  background-color: #d25d5d;
+  background-color: #560707;
+}
+
+.header{
+  background-color: #FFFFFF;
+}
+
+.fa-arrow-circle-down {
+  color: #560707;
+}
+
+.fa-arrow-circle-down:hover {
+  color: #d25d5d;
+}
+
+.register-btn{
+   background-color: #560707;
+   border-radius: 10px;
+}
+
+.register-btn:hover{
+   background-color: #d25d5d;
+}
+
+ul#nav li a:active {
+  background-color: transparent !important;
+}
+
+ul#nav li.current a {
+  color: 	#cf8484;
 }
