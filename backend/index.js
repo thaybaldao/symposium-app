@@ -58,7 +58,7 @@ app.get('/', (req, res) => {
 app.post('/login', function (req, res) {
   const user = req.body.username;
   const pwd = req.body.password;
-
+  
   // return 400 status if username/password is not exist
   if (!user || !pwd) {
     return res.status(400).json({
@@ -79,6 +79,7 @@ app.post('/login', function (req, res) {
   const token = utils.generateToken(userData);
   // get basic user details
   const userObj = utils.getCleanUser(userData);
+
   // return the token along with user details
   return res.json({ user: userObj, token });
 });
