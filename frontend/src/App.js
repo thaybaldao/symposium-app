@@ -4,7 +4,7 @@ import $ from 'jquery';
 import './App.css';
 import About from './Components/About';
 import Contact from './Components/Contact';
-import Faq from './Components/Faq';
+import FAQSession from './Components/Faq';
 import Header from './Components/Header';
 import Register from './Components/Register';
 import Schedule from './Components/Schedule';
@@ -52,7 +52,7 @@ class App extends Component {
         <About />
         <Speakers />
         <Schedule />
-        <Faq />
+        <FAQSession />
         <Register />
         <Contact data={this.state.data.main}/>
         <ShowMap />
