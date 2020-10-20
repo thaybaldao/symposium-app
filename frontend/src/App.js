@@ -26,7 +26,7 @@ class App extends Component {
     this.state = {
       foo: 'bar',
       data: {},
-      currentUser: undefined,
+      currentUser: null,
     };
 
     ReactGA.initialize('UA-110570651-1');
@@ -50,15 +50,6 @@ class App extends Component {
   }
 
   componentDidMount(){
-    const user = AuthService.getCurrentUser();
-
-    if (user) {
-      this.setState({
-        currentUser: user
-      });
-      console.log("Someone logged in!")
-      console.log(user)
-    }
     this.getData();
   }
 
@@ -68,7 +59,7 @@ class App extends Component {
 
   render() {
 
-     const { currentUser } = this.state;
+    const { currentUser } = this.state;
 
     return (
       <div className="App">
@@ -80,8 +71,7 @@ class App extends Component {
         <Register />
         <Contact data={this.state.data.main}/>
         <ShowMap />
-
-          <Login />
+        <Login isLoggedIn={AuthService.getCurrentUser() === null} />
 
         <Footer data={this.state.data.main}/>
       </div>
