@@ -39,11 +39,23 @@ class Register extends Component {
     let val = event.target.value;
     this.setState({[nam]: val});
   }
-  mySubmitHandler = (event) => {
-    event.preventDefault();
+
+  mySubmitHandler = async e => {
     this.form.validateAll();
-    console.log(this.state);
-  }
+    e.preventDefault();
+    try {
+      const body = this.state;
+      const response = await fetch("http://localhost:4000/new", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body)
+      });
+
+      window.location = "/";
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
 
   render() {
     return (

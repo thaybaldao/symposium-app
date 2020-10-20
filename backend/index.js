@@ -18,39 +18,12 @@ const userData = {
   username: "cluemediator"
 };
 
-// users from db
-app.get("/all", async (req, res) => {
-  try {
-    const allUsers = await pool.query("SELECT * FROM users");
-    res.json(allUsers.rows);
-    console.log(allUsers);
-  } catch (err) {
-    console.error(err.message);
-  }
-})
-
-
-app.get("/todos/:id", async (req, res) => {
-  try {
-    const { id } = req.params;
-    const todo = await pool.query("SELECT * FROM todo WHERE todo_id = $1", [
-      id
-    ]);
-
-    res.json(todo.rows[0]);
-  } catch (err) {
-    console.error(err.message);
-  }
-});
-
-
 // enable CORS
 app.use(cors());
 // parse application/json
 app.use(bodyParser.json());
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
-
 
 //middleware that checks if JWT token exists and verifies it if it does exist.
 //In all future routes, this helps to know if the request is authenticated or not.
@@ -120,7 +93,6 @@ app.post('/login', async (req, res) => {
     // return the token along with user details
     return res.json({ user: userObj, token });
 
-    console.log(curr);
   } catch (err) {
     console.error(err.message);
   }
@@ -171,6 +143,34 @@ app.get('/verifyToken', function (req, res) {
     var userObj = utils.getCleanUser(userData);
     return res.json({ user: userObj, token });
   });
+});
+
+// get users from db
+app.get("/all", async (req, res) => {
+  try {
+    const allUsers = await pool.query("SELECT * FROM users");
+    res.json(allUsers.rows);
+
+  } catch (err) {
+    console.error(err.message);
+  }
+})
+
+// add new user
+app.post("/new", async (req, res) => {
+  try {
+
+    const body = req.body;
+
+    const newUser = await pool.query(
+      "INSERT INTO users (name, email, password, rg, cpf, tel, birth_date, education, work, organization)\
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10);",[body.name, body.email,
+       body.password, body.rg, body.cpf, body.tel, body.birth, body.nivel, body.job, body.place]);
+
+    res.json(newUser.rows[0]);
+  } catch (err) {
+    console.error(err.message);
+  }
 });
 
 app.listen(port, () => {
