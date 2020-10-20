@@ -1,0 +1,40 @@
+{
+  "main": {
+    "name":"II Simpósio Mulheres em STEM",
+    "contactMessage":"Here is where you should write your message to readers to have them get in contact with you.",
+    "social":[
+      {
+        "name":"facebook",
+        "url":"https://pt-br.facebook.com/mulheresstem2d/",
+        "className":"fa fa-facebook whitelogo"
+      },
+      {
+        "name":"youtube",
+        "url":"https://www.youtube.com/channel/UCx38jExdJcyhrmmf53oDIEg",
+        "className":"fa fa-youtube whitelogo"
+      },
+      {
+        "name":"instagram",
+        "url":"https://www.instagram.com/mulheresemstem2d/",
+        "className":"fa fa-instagram whitelogo"
+      }
+    ],
+    "support":[
+      {
+        "name":"ita",
+        "url":"http://www.ita.br/",
+        "image":"ita.png"
+      },
+      {
+        "name":"itaex",
+        "url":"https://itaex.com.br/",
+        "image":"itaex.png"
+      },
+      {
+        "name":"jonhson",
+        "url":"https://www.jnjbrasil.com.br/",
+        "image":"jj.png"
+      }
+    ]
+  }
+}
