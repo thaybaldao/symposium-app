@@ -21,7 +21,6 @@ CREATE TABLE listener_subscriptions(
    subscriptiont_id INT GENERATED ALWAYS AS IDENTITY,
    user_id INT,
    PRIMARY KEY(subscriptiont_id)
-   --CONSTRAINT fk_user FOREIGN KEY(customer_id) UNIQUE REFERENCES customers(customer_id)
 );
 
 ALTER TABLE listener_subscriptions ADD FOREIGN KEY (user_id) REFERENCES users(user_id);
@@ -33,7 +32,6 @@ CREATE TABLE presenter_subscriptions(
    authors VARCHAR(255) NOT NULL,
    abstract VARCHAR(5000) NOT NULL,
    PRIMARY KEY (id)
-   --CONSTRAINT fk_user FOREIGN KEY(customer_id) UNIQUE REFERENCES customers(customer_id)
 );
 
 ALTER TABLE presenter_subscriptions ADD FOREIGN KEY (user_id) REFERENCES users(user_id);

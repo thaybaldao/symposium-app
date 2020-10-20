@@ -55,7 +55,7 @@ app.post('/login', async (req, res) => {
   if (!email || !pwd) {
     return res.status(400).json({
       error: true,
-      message: "Username or Password required."
+      message: "Email ou senha são obrigatórios."
     });
   }
 
@@ -65,7 +65,7 @@ app.post('/login', async (req, res) => {
     if (curr.rows[0] === undefined) {
       return res.status(401).json({
         error: true,
-        message: "Email is not registered."
+        message: "Email não está registrado."
       });
     }
 
@@ -73,7 +73,7 @@ app.post('/login', async (req, res) => {
     if (email !== curr.rows[0].email || pwd !== curr.rows[0].password) {
       return res.status(401).json({
         error: true,
-        message: "Email or Password is Wrong."
+        message: "Email ou senha estão incorretos."
       });
     }
 
@@ -88,22 +88,6 @@ app.post('/login', async (req, res) => {
   } catch (err) {
     console.error(err.message);
   }
-
-  // return 401 status if the credential is not match.
-  // if (user !== userData.username || pwd !== userData.password) {
-  //   return res.status(401).json({
-  //     error: true,
-  //     message: "Username or Password is Wrong."
-  //   });
-  // }
-  //
-  // // generate token
-  // const token = utils.generateToken(userData);
-  // // get basic user details
-  // const userObj = utils.getCleanUser(userData);
-  //
-  // // return the token along with user details
-  // return res.json({ user: userObj, token });
 });
 
 
