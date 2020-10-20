@@ -46,17 +46,9 @@ app.use(function (req, res, next) {
   });
 });
 
-
-// request handlers
-app.get('/', (req, res) => {
-  if (!req.user) return res.status(401).json({ success: false, message: 'Invalid user to access it.' });
-  res.send('Welcome to the Node.js Tutorial! - ' + req.user.name);
-});
-
-
 // validate the user credentials
 app.post('/login', async (req, res) => {
-  const email = req.body.username;
+  const email = req.body.email;
   const pwd = req.body.password;
 
   // return 400 status if username/password is not exist
@@ -73,7 +65,7 @@ app.post('/login', async (req, res) => {
     if (curr.rows[0] === undefined) {
       return res.status(401).json({
         error: true,
-        message: "Username does not exist."
+        message: "Email is not registered."
       });
     }
 
@@ -81,7 +73,7 @@ app.post('/login', async (req, res) => {
     if (email !== curr.rows[0].email || pwd !== curr.rows[0].password) {
       return res.status(401).json({
         error: true,
-        message: "Username or Password is Wrong."
+        message: "Email or Password is Wrong."
       });
     }
 
