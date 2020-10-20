@@ -22,13 +22,13 @@ class Footer extends Component {
            </ul>
            <p style={{margin: "0 0 -50px 0", position: "relative", right: "5px"}}> APOIADORES </p>
            <ul className="copyright" style={{position: "relative", right: "30px"}}>
-              <li><a href={"http://www.ita.br/"}><img className="ita" src={require('../Images/ita.png')}/></a></li>
-              <li><a href={"https://itaex.com.br/"}><img className="itaex" src={require('../Images/itaex.png')}/></a></li>
-              <li><a href={"https://www.jnjbrasil.com.br/"}><img className="johnson" src={require('../Images/jj.png')}/></a></li>
+              <li><a href={"http://www.ita.br/"}><img className="ita" src={require('../Images/ita.png')} alt="ita"/></a></li>
+              <li><a href={"https://itaex.com.br/"}><img className="itaex" src={require('../Images/itaex.png')} alt="itaex"/></a></li>
+              <li><a href={"https://www.jnjbrasil.com.br/"}><img className="johnson" src={require('../Images/jj.png')} alt="jnjbrasil"/></a></li>
            </ul>
 
         </div>
-        <div id="go-top"><a className="smoothscroll" title="Back to Top" href="#home"><i className="fa fa-angle-up"></i></a></div>
+        <div id="go-top"><a className="smoothscroll" title="Back to Top" href="#home"><i className="fa fa-arrow-circle-up"></i></a></div>
      </div>
     </footer>
     );
