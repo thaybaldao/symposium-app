@@ -71,10 +71,9 @@ class App extends Component {
         <Schedule />
         <FAQSession />
         <Register />
+        <Login isLoggedIn={AuthService.getCurrentUser() === null} />
         <Contact data={this.state.data.main}/>
         <ShowMap />
-        <Login isLoggedIn={AuthService.getCurrentUser() === null} />
-
         <Footer data={this.state.data.main}/>
       </div>
     );
