@@ -26,9 +26,9 @@ class Footer extends Component {
               <li><a href={"https://itaex.com.br/"}><img className="itaex" src={require('../Images/itaex.png')} alt="itaex"/></a></li>
               <li><a href={"https://www.jnjbrasil.com.br/"}><img className="johnson" src={require('../Images/jj.png')} alt="jnjbrasil"/></a></li>
            </ul>
-
+        <p></p>
         </div>
-        <div id="go-top"><a className="smoothscroll" title="Back to Top" href="#home"><i className="fa fa-arrow-circle-up"></i></a></div>
+        <a id="go-top"><a className="smoothscroll" title="Back to Top" href="#home"><i className="fa fa-arrow-circle-up"></i></a></a>
      </div>
     </footer>
     );
