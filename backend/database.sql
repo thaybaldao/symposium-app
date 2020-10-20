@@ -2,6 +2,7 @@ DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS listener_subscriptions CASCADE;
 DROP TABLE IF EXISTS presenter_subscriptions CASCADE;
 
+-- add phone number 
 CREATE TABLE users(
    user_id SERIAL,
    name VARCHAR(100) NOT NULL,
