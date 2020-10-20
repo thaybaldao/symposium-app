@@ -94,3 +94,47 @@ ul#nav li.current a {
   bottom: 5px;
   left: 12px;
 }
+
+.countdown-wrapper {
+    font: 22px/30px 'opensans-bold', sans-serif;
+
+    color: white;
+    background-color: #560707;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.countdown-text {
+    font: 22px/30px 'opensans-bold', sans-serif;
+}
+
+.countdown-item {
+    color: #FFFFFF;
+    font-size: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    line-height: 30px;
+    margin: 10px;
+    padding-top: 10px;
+    position: relative;
+    width: 100px;
+    height: 100px;
+}
+
+.countdown-item span {
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.countdown-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100px;
+    height: 100px;
+}

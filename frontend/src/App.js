@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactGA from 'react-ga';
 import $ from 'jquery';
 import './App.css';
+import Countdown from './Components/Countdown.js';
 import About from './Components/About';
 import Contact from './Components/Contact';
 import FAQSession from './Components/Faq';
@@ -49,6 +50,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
+        <Countdown timeTillDate="12 30 2020, 8:00 am" timeFormat="MM DD YYYY, h:mm a" />
         <About />
         <Speakers />
         <Schedule />
