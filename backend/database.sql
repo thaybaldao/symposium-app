@@ -3,7 +3,7 @@ DROP TABLE IF EXISTS listener_subscriptions CASCADE;
 DROP TABLE IF EXISTS presenter_subscriptions CASCADE;
 
 CREATE TABLE users(
-   id SERIAL,
+   user_id SERIAL,
    name VARCHAR(100) NOT NULL,
    email VARCHAR(100) UNIQUE NOT NULL,
    password VARCHAR NOT NULL,
@@ -17,11 +17,13 @@ CREATE TABLE users(
 );
 
 CREATE TABLE listener_subscriptions(
-   id INT GENERATED ALWAYS AS IDENTITY,
+   subscriptiont_id INT GENERATED ALWAYS AS IDENTITY,
    user_id INT,
-   PRIMARY KEY(subscriptiont_id),
-   CONSTRAINT fk_user FOREIGN KEY(customer_id) UNIQUE REFERENCES customers(customer_id)
+   PRIMARY KEY(subscriptiont_id)
+   --CONSTRAINT fk_user FOREIGN KEY(customer_id) UNIQUE REFERENCES customers(customer_id)
 );
+
+ALTER TABLE listener_subscriptions ADD FOREIGN KEY (user_id) REFERENCES users(user_id);
 
 CREATE TABLE presenter_subscriptions(
    id INT GENERATED ALWAYS AS IDENTITY,
@@ -29,6 +31,12 @@ CREATE TABLE presenter_subscriptions(
    title VARCHAR(255) NOT NULL,
    authors VARCHAR(255) NOT NULL,
    abstract VARCHAR(5000) NOT NULL,
-   PRIMARY KEY(subscriptiont_id),
-   CONSTRAINT fk_user FOREIGN KEY(customer_id) UNIQUE REFERENCES customers(customer_id)
+   PRIMARY KEY (id)
+   --CONSTRAINT fk_user FOREIGN KEY(customer_id) UNIQUE REFERENCES customers(customer_id)
 );
+
+ALTER TABLE presenter_subscriptions ADD FOREIGN KEY (user_id) REFERENCES users(user_id);
+
+insert into users values
+(default,'user1','1@gmail.com','1234','11111','11111','01/01/2000','basica','estudante','ITA'),
+(default,'user2','2@gmail.com','1234','22222','22222','01/01/2000','basica','estudante','ITA');

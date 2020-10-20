@@ -5,6 +5,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
 const utils = require('./utils');
+const pool = require("./db");
 
 const app = express();
 const port = process.env.PORT || 4000;
@@ -16,6 +17,32 @@ const userData = {
   name: "Clue Mediator",
   username: "cluemediator"
 };
+
+// users from db
+app.get("/all", async (req, res) => {
+  try {
+    const allUsers = await pool.query("SELECT * FROM users");
+    res.json(allUsers.rows);
+    console.log(allUsers);
+  } catch (err) {
+    console.error(err.message);
+  }
+})
+
+
+app.get("/todos/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const todo = await pool.query("SELECT * FROM todo WHERE todo_id = $1", [
+      id
+    ]);
+
+    res.json(todo.rows[0]);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
 
 // enable CORS
 app.use(cors());
@@ -55,33 +82,64 @@ app.get('/', (req, res) => {
 
 
 // validate the user credentials
-app.post('/login', function (req, res) {
-  const user = req.body.username;
+app.post('/login', async (req, res) => {
+  const email = req.body.username;
   const pwd = req.body.password;
-  
+
   // return 400 status if username/password is not exist
-  if (!user || !pwd) {
+  if (!email || !pwd) {
     return res.status(400).json({
       error: true,
       message: "Username or Password required."
     });
   }
 
-  // return 401 status if the credential is not match.
-  if (user !== userData.username || pwd !== userData.password) {
-    return res.status(401).json({
-      error: true,
-      message: "Username or Password is Wrong."
-    });
+  try {
+    const curr = await pool.query("SELECT * FROM users WHERE email = $1", [email]);
+    // not found in db
+    if (curr.rows[0] === undefined) {
+      return res.status(401).json({
+        error: true,
+        message: "Username does not exist."
+      });
+    }
+
+    //return 401 status if the credential is not match.
+    if (email !== curr.rows[0].email || pwd !== curr.rows[0].password) {
+      return res.status(401).json({
+        error: true,
+        message: "Username or Password is Wrong."
+      });
+    }
+
+    // generate token
+    const token = utils.generateToken(curr.rows[0]);
+    // get basic user details
+    const userObj = utils.getCleanUser(curr.rows[0]);
+
+    // return the token along with user details
+    return res.json({ user: userObj, token });
+
+    console.log(curr);
+  } catch (err) {
+    console.error(err.message);
   }
 
-  // generate token
-  const token = utils.generateToken(userData);
-  // get basic user details
-  const userObj = utils.getCleanUser(userData);
-
-  // return the token along with user details
-  return res.json({ user: userObj, token });
+  // return 401 status if the credential is not match.
+  // if (user !== userData.username || pwd !== userData.password) {
+  //   return res.status(401).json({
+  //     error: true,
+  //     message: "Username or Password is Wrong."
+  //   });
+  // }
+  //
+  // // generate token
+  // const token = utils.generateToken(userData);
+  // // get basic user details
+  // const userObj = utils.getCleanUser(userData);
+  //
+  // // return the token along with user details
+  // return res.json({ user: userObj, token });
 });
 
 
