@@ -2,7 +2,6 @@ DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS listener_subscriptions CASCADE;
 DROP TABLE IF EXISTS presenter_subscriptions CASCADE;
 
--- add phone number 
 CREATE TABLE users(
    user_id SERIAL,
    name VARCHAR(100) NOT NULL,
@@ -10,6 +9,7 @@ CREATE TABLE users(
    password VARCHAR NOT NULL,
    rg VARCHAR(20) NOT NULL,
    cpf VARCHAR(14) UNIQUE NOT NULL,
+   tel VARCHAR(20) NOT NULL,
    birth_date DATE NOT NULL,
    education VARCHAR(100) NOT NULL,
    work VARCHAR(100) NOT NULL,
@@ -39,5 +39,5 @@ CREATE TABLE presenter_subscriptions(
 ALTER TABLE presenter_subscriptions ADD FOREIGN KEY (user_id) REFERENCES users(user_id);
 
 insert into users values
-(default,'user1','1@gmail.com','1234','11111','11111','01/01/2000','basica','estudante','ITA'),
-(default,'user2','2@gmail.com','1234','22222','22222','01/01/2000','basica','estudante','ITA');
+(default,'user1','1@gmail.com','1234','11111','11111','66666666','01/01/2000','basica','estudante','ITA'),
+(default,'user2','2@gmail.com','1234','22222','22222','66666666','01/01/2000','basica','estudante','ITA');

@@ -30,7 +30,7 @@ class Register extends Component {
   constructor(props) {
       super(props);
       this.state = { name: '', email: '', password:'',
-                    rg: '', cpf: '', birth: '', nivel: '',
+                    rg: '', cpf: '', tel: '', birth: '', nivel: '',
                     job: '', place: ''
                    };
   }
@@ -68,6 +68,9 @@ class Register extends Component {
 
                 <p>CPF:</p>
                 <Input type="text" name='cpf' value={this.state.cpf} onChange={this.myChangeHandler} validations={[required]}/>
+
+                <p>Telefone:</p>
+                <Input type="text" name='tel' value={this.state.tel} onChange={this.myChangeHandler} validations={[required]}/>
 
                 <p>Data de Nascimento:</p>
                 <Input type="date" name='birth' value={this.state.birth} onChange={this.myChangeHandler} validations={[required]}/>
