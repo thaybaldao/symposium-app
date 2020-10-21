@@ -8,7 +8,7 @@ import AuthService from "../Services/AuthService.js";
 const required = value => {
   if (!value) {
     return (
-      <div className="alert alert-danger" role="alert">
+      <div className="alert alert-warning" role="alert">
         Este campo é obrigatório!
       </div>
     );
@@ -92,7 +92,7 @@ class Login extends Component {
             }}
           >
 
-              <label class="modal-field" htmlFor="email">Email</label>
+              <label class="modal-field" htmlFor="email">E-mail:</label>
               <Input
                 type="text"
                 className="form-control"
@@ -104,7 +104,7 @@ class Login extends Component {
 
 
 
-              <label class="modal-field" htmlFor="password">Password</label>
+              <label class="modal-field" htmlFor="password">Senha:</label>
               <Input
                 type="password"
                 className="form-control"

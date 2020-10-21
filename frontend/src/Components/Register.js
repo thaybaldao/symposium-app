@@ -6,20 +6,29 @@ import validator from "validator";
 
 const email = (value) => {
   if (!validator.isEmail(value)) {
-    return `${value} não é um email válido.`
+    return (
+      <div className="alert alert-warning" role="alert">
+        {`${value} não é um email válido.`}
+      </div>
+    );
   }
 };
 
 const number = (value) => {
   if (!validator.isNumeric(value)) {
-    return `${value} não é uma sequência de números.`
+    return (
+      <div className="alert alert-warning" role="alert">
+        {`${value} não é uma sequência de números.`}
+      </div>
+    );
+    
   }
 };
 
 const required = value => {
   if (!value) {
     return (
-      <div className="alert alert-danger" role="alert">
+      <div className="alert alert-warning" role="alert">
         Este campo é obrigatório!
       </div>
     );
@@ -67,7 +76,7 @@ class Register extends Component {
 
 
               <Form onSubmit={this.mySubmitHandler} ref={c => { this.form = c; }}>
-                <p class="modal-field">Nome:</p>
+                <p class="modal-field">Nome Completo:</p>
                 <Input type="text" className="form-control" name='name' value={this.state.name} onChange={this.myChangeHandler} validations={[required]}/>
 
                 <p class="modal-field">E-mail:</p>
@@ -86,8 +95,8 @@ class Register extends Component {
                 <Input type="text" className="form-control" name='tel' value={this.state.tel} onChange={this.myChangeHandler} validations={[required]}/>
 
                 <p class="modal-field">Data de Nascimento:</p>
-                <Input type="date" className="form-control form-control-lg" name='birth' value={this.state.birth} onChange={this.myChangeHandler} validations={[required]}/>
-
+                <Input type="date" className="form-control form-control-lg" style={{marginBottom: "24px"}} name='birth' value={this.state.birth} onChange={this.myChangeHandler} validations={[required]}/>
+                
                 <p class="modal-field">Nível de Escolaridade:</p>
                 <Select name="nivel" className="form-control form-control-lg" value={this.state.nivel} onChange={this.myChangeHandler} validations={[required]}>
                   <option value="fundamental">Ensino Fundamental</option>

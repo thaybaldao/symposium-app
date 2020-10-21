@@ -18,15 +18,16 @@ class RegisterModal extends Component {
        (
 
         <section id="inscricao" className="section lightRed" style={{color: "#000000", textAlign: "center"}}>
+          <h2 style={{color: "white"}}>Inscrições</h2>
           <button type="button" className="button" data-toggle="modal" data-target="#registerModal">
-          Register
+          Cadastro
           </button>
 
           <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="newmodal">
               <div class="modal-header">
-                <h5 class="modal-title" id="registerModalLabel">Register</h5>
+                <h5 class="modal-title" id="registerModalLabel">Cadastro</h5>
                 <button type="button" style={{fontSize: "20px"}} class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
