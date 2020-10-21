@@ -16,12 +16,10 @@ class Header extends Component {
             <li><a className="smoothscroll" href="#programacao">Programação</a></li>
             <li><a className="smoothscroll" href="#faq">FAQ</a></li>
             <li><a className="smoothscroll" href="#inscricao">Inscrição</a></li>
-            <li><a className="smoothscroll" href="#contato">Contato</a></li>
          </ul>
       </nav>
 
       <div className="row banner">
-
          <div className="banner-text">
             <img src={require('../Images/banner.png')}  alt="banner"/>
             <a href="#inscricao" className="button btn register-btn">Inscrever-se</a>

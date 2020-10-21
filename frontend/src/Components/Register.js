@@ -59,7 +59,7 @@ class Register extends Component {
 
   render() {
     return (
-      <section id="inscricao" className="section lightRed">
+      <section id="inscricao">
         <div className="row">
            <div className="nine columns main-col">
               <h2>Register</h2>
