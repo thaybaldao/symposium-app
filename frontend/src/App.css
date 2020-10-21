@@ -3,7 +3,7 @@
 }
 
 .fa-arrow-circle-down:hover {
-  color: #d25d5d;
+  color: #D39898;
 }
 
 .register-btn{
@@ -152,4 +152,30 @@ ul#nav li.current a {
 .button:hover {
     background-color: #D39898;
     color: #000000;
+}
+
+.newmodal {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  pointer-events: auto;
+  background-color: #FFD9D9;
+  background-clip: padding-box;
+  border-radius: 10px;
+  outline: 0;
+}
+
+.inside-modal {
+  text-align: center;
+}
+
+.modal-field {
+  text-align: left;
+  margin: 0 0 0 0;
+}
+
+.modal-title {
+  font: 25px 'opensans-bold', sans-serif;
+  color: #550000;
 }

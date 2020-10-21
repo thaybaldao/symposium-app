@@ -60,48 +60,48 @@ class Register extends Component {
   render() {
     return (
       <section id="inscricao">
-        <div className="row">
-           <div className="nine columns main-col">
-              <h2>Register</h2>
+        <div>
+           <div className="inside-modal">
+              
 
 
               <Form onSubmit={this.mySubmitHandler} ref={c => { this.form = c; }}>
-                <p>Nome:</p>
-                <Input type="text" name='name' value={this.state.name} onChange={this.myChangeHandler} validations={[required]}/>
+                <p class="modal-field">Nome:</p>
+                <Input type="text" className="form-control" name='name' value={this.state.name} onChange={this.myChangeHandler} validations={[required]}/>
 
-                <p>E-mail:</p>
-                <Input type="text" name='email' value={this.state.email} onChange={this.myChangeHandler} validations={[required, email]}/>
+                <p class="modal-field">E-mail:</p>
+                <Input type="text" className="form-control" name='email' value={this.state.email} onChange={this.myChangeHandler} validations={[required, email]}/>
 
-                <p>Senha:</p>
-                <Input type="password" name='password' value={this.state.password} onChange={this.myChangeHandler} validations={[required]}/>
+                <p class="modal-field">Senha:</p>
+                <Input type="password" className="form-control" name='password' value={this.state.password} onChange={this.myChangeHandler} validations={[required]}/>
 
-                <p>RG:</p>
-                <Input type="text"  name='rg' value={this.state.rg} onChange={this.myChangeHandler} validations={[required, number]}/>
+                <p class="modal-field">RG:</p>
+                <Input type="text" className="form-control"  name='rg' value={this.state.rg} onChange={this.myChangeHandler} validations={[required, number]}/>
 
-                <p>CPF:</p>
-                <Input type="text" name='cpf' value={this.state.cpf} onChange={this.myChangeHandler} validations={[required]}/>
+                <p class="modal-field">CPF:</p>
+                <Input type="text" className="form-control" name='cpf' value={this.state.cpf} onChange={this.myChangeHandler} validations={[required]}/>
 
-                <p>Telefone:</p>
-                <Input type="text" name='tel' value={this.state.tel} onChange={this.myChangeHandler} validations={[required]}/>
+                <p class="modal-field">Telefone:</p>
+                <Input type="text" className="form-control" name='tel' value={this.state.tel} onChange={this.myChangeHandler} validations={[required]}/>
 
-                <p>Data de Nascimento:</p>
-                <Input type="date" name='birth' value={this.state.birth} onChange={this.myChangeHandler} validations={[required]}/>
+                <p class="modal-field">Data de Nascimento:</p>
+                <Input type="date" className="form-control form-control-lg" name='birth' value={this.state.birth} onChange={this.myChangeHandler} validations={[required]}/>
 
-                <p>Nível de Escolaridade:</p>
-                <Select name="nivel" value={this.state.nivel} onChange={this.myChangeHandler} validations={[required]}>
+                <p class="modal-field">Nível de Escolaridade:</p>
+                <Select name="nivel" className="form-control form-control-lg" value={this.state.nivel} onChange={this.myChangeHandler} validations={[required]}>
                   <option value="fundamental">Ensino Fundamental</option>
                   <option value="medio">Ensino Médio</option>
                   <option value="superior">Ensino Superior</option>
                   <option value="posgraduacao">Pós-Graduação</option>
                 </Select>
 
-                <p>Profissão:</p>
-                <Input type="text" name='job' value={this.state.job} onChange={this.myChangeHandler} validations={[required]}/>
+                <p class="modal-field">Profissão:</p>
+                <Input type="text" className="form-control" name='job' value={this.state.job} onChange={this.myChangeHandler} validations={[required]}/>
 
-                <p>Organização:</p>
-                <Input type="text" name='place' value={this.state.place} onChange={this.myChangeHandler} validations={[required]}/>
+                <p class="modal-field">Organização:</p>
+                <Input type="text" className="form-control" name='place' value={this.state.place} onChange={this.myChangeHandler} validations={[required]}/>
 
-                <Input type='submit' value='Inscrever'/>
+                <Input type='submit' className="button" value='Inscrever'/>
               </Form>
            </div>
         </div>

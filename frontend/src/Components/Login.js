@@ -84,15 +84,15 @@ class Login extends Component {
   render() {
     return (
       <div className="col-md-12">
-        <div className="card card-container">
+        <div className="inside-modal">
           <Form
             onSubmit={this.handleLogin}
             ref={c => {
               this.form = c;
             }}
           >
-            <div className="form-group">
-              <label htmlFor="email">Email</label>
+
+              <label class="modal-field" htmlFor="email">Email</label>
               <Input
                 type="text"
                 className="form-control"
@@ -101,10 +101,10 @@ class Login extends Component {
                 onChange={this.onChangeEmail}
                 validations={[required]}
               />
-            </div>
 
-            <div className="form-group">
-              <label htmlFor="password">Password</label>
+
+
+              <label class="modal-field" htmlFor="password">Password</label>
               <Input
                 type="password"
                 className="form-control"
@@ -113,19 +113,19 @@ class Login extends Component {
                 onChange={this.onChangePassword}
                 validations={[required]}
               />
-            </div>
 
-            <div className="form-group">
+
+
               <button
-                className="btn btn-primary btn-block"
+                className="button"
                 disabled={this.state.loading}
               >
                 {this.state.loading && (
-                  <span className="spinner-border spinner-border-sm"></span>
+                  <span className="spinner-border spinner-border-sm" style={{marginRight: "5px", marginBottom: "3px"}}></span>
                 )}
                 <span>Login</span>
               </button>
-            </div>
+
 
             {this.state.message && (
               <div className="form-group">
