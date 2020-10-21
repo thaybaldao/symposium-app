@@ -23,7 +23,7 @@ class Header extends Component {
       <div className="row banner">
          <div className="banner-text">
             <img src={require('../Images/banner.png')}  alt="banner"/>
-            <a href="#inscricao" className="button btn register-btn">INSCREVER-SE</a>
+            <a href="#inscricao" className="smoothscroll button btn register-btn">INSCREVER-SE</a>
          </div>
       </div>
 
