@@ -63,8 +63,8 @@ class App extends Component {
         <About />
         <Speakers />
         <Schedule />
-        <FAQSession />
         <RegisterModal loggedIn={AuthService.getCurrentUser() === null}/>
+        <FAQSession />
         <ShowMap />
         <Footer data={this.state.data.main}/>
       </div>

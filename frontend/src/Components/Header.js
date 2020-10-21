@@ -14,8 +14,8 @@ class Header extends Component {
             <li><a className="smoothscroll" href="#sobre">Sobre</a></li>
             <li><a className="smoothscroll" href="#palestrantes">Palestrantes</a></li>
             <li><a className="smoothscroll" href="#programacao">Programação</a></li>
-            <li><a className="smoothscroll" href="#faq">FAQ</a></li>
             <li><a className="smoothscroll" href="#inscricao">Inscrição</a></li>
+            <li><a className="smoothscroll" href="#faq">FAQ</a></li>
          </ul>
       </nav>
 

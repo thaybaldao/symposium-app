@@ -22,9 +22,9 @@ const data = {
 }
 
 const styles = {
-    bgColor: "#560707",
+    bgColor: "#d39898",
     rowTitleColor: "white",
-    rowContentColor: "#d3989a",
+    rowContentColor: "#560707",
     arrowColor: "#d39898",
     rowContentPaddingLeft: "10px",
 };
@@ -32,7 +32,7 @@ const styles = {
 class FAQSession extends Component {
   render() {
     return (
-      <section id="faq" className="section darkRed">
+      <section id="faq" className="section lightPink">
         <div className="row">
           <h2>FAQ</h2>
           <div >
