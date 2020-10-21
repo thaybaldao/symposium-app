@@ -9,4 +9,13 @@ const pool = new Pool({
   database: "symposium"
 });
 
+// Raissa
+/*const pool = new Pool({
+  user: "postgres",
+  password: "password",
+  host: "localhost",
+  port: 5432,
+  database: "symposium"
+});*/
+
 module.exports = pool;
