@@ -74,7 +74,7 @@ class Contact extends Component {
             <Input type="text" className="form-control" name='email' value={this.state.email} onChange={this.myChangeHandler} validations={[required, email]}/>
 
             <p class="modal-field">Mensagem:</p>
-            <textarea type="text" className="form-control" name='message' value={this.state.abstract} onChange={this.myChangeHandler} validations={[required]}/>
+            <textarea type="text" className="form-control" name='message' value={this.state.message} onChange={this.myChangeHandler} validations={[required]}/>
 
             <Input type='submit' className="button btn register-btn button-contact" value='ENVIAR'/>
           </Form>

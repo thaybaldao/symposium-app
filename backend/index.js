@@ -133,6 +133,21 @@ app.post("/register", async (req, res) => {
   }
 });
 
+// register new contact message
+app.post("/contact", async (req, res) => {
+  try {
+    const body = req.body;
+
+    const newContact = await pool.query(
+      "INSERT INTO contact_messages (name, email, message)\
+       VALUES ($1, $2, $3);",[body.name, body.email, body.message]);
+
+    res.json(newContact.rows[0]);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
 // subscribe listener
 app.post("/subscribe/listener", async (req, res) => {
   try {

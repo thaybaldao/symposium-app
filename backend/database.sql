@@ -17,6 +17,14 @@ CREATE TABLE users(
    PRIMARY KEY(user_id)
 );
 
+CREATE TABLE contact_messages(
+   contact_message_id SERIAL,
+   name VARCHAR(100) NOT NULL,
+   email VARCHAR(100) NOT NULL,
+   message VARCHAR(5000) NOT NULL,
+   PRIMARY KEY(contact_message_id)
+);
+
 CREATE TABLE listener_subscriptions(
    subscriptiont_id INT GENERATED ALWAYS AS IDENTITY,
    user_id INT,
