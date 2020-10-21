@@ -1,19 +1,5 @@
 import React, { Component } from 'react';
 
-/*class Speakers extends Component {
-  render() {
-    return (
-      <section id="palestrantes" className="section lightPink">
-        <div className="row">
-           <div className="nine columns main-col">
-              <h2>Speakers</h2>
-           </div>
-        </div>
-      </section>
-    );
-  }
-}*/
-
 class Speakers extends Component {
   render() {
     return (
@@ -78,7 +64,7 @@ class Speakers extends Component {
                 
               </div>
               <div class="info-text">
-                <h3>Marcia Barbosa</h3>
+                <h3>Márcia Barbosa</h3>
                 <p>Pesquisadora na UFRGS</p>
               </div>
             </div>
