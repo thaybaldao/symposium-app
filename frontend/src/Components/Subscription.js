@@ -58,7 +58,7 @@ class Subscription extends Component {
                         <span aria-hidden="true">&times;</span>
                       </button>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body" style={{left: "11px"}}>
                       <SubscribePresenter/>
                     </div>
                   </div>
