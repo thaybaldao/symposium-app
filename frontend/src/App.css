@@ -55,8 +55,10 @@ ul#nav li.current a {
 }
 
 .section h2 {
-   font: 22px/30px 'opensans-bold', sans-serif;
+   font: 20px 'opensans-bold', sans-serif;
+   font-weight: bold;
    margin-bottom: 12px;
+   text-transform: uppercase;
 }
 .section p {
    line-height: 30px;
@@ -160,7 +162,7 @@ ul#nav li.current a {
   flex-direction: column;
   width: 100%;
   pointer-events: auto;
-  background-color: #FFD9D9;
+  background-color: #FFFFFF;
   background-clip: padding-box;
   border-radius: 10px;
   outline: 0;

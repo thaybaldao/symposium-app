@@ -9,7 +9,7 @@ import AuthService from "../Services/AuthService.js";
 const required = value => {
   if (!value) {
     return (
-      <div className="alert alert-danger" role="alert">
+      <div className="alert alert-danger" role="alert" style={{maxWidth:"95%"}}>
         Este campo é obrigatório!
       </div>
     );

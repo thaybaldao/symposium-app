@@ -16,44 +16,47 @@ class RegisterModal extends Component {
       <div>
       {this.loggedIn ?
        (
+        <section id="inscricao" className="section lightRed">
+          <div className="row">
+            <h2>Inscrição</h2>
+          </div>
+          <div className="row">
+            <p>Para se inscrever no Simpósio Brasileiro de Mulheres em STEM, efetue login nesta página. <br />
+            Caso você ainda não possua uma conta, preencha o formulário de cadastro. Em seguida, efetue login nesta página.</p>
+          </div>
+          <div style={{color: "#000000", textAlign: "center"}}>
+            <button type="button" className="button" data-toggle="modal" data-target="#registerModal">CADASTRO</button>
 
-        <section id="inscricao" className="section lightRed" style={{color: "#000000", textAlign: "center"}}>
-          <h2 style={{color: "white"}}>Inscrições</h2>
-          <button type="button" className="button" data-toggle="modal" data-target="#registerModal">
-          Cadastro
-          </button>
-
-          <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="newmodal">
-              <div class="modal-header">
-                <h5 class="modal-title" id="registerModalLabel">Cadastro</h5>
-                <button type="button" style={{fontSize: "20px"}} class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-                <div class="modal-body">
-                  <Register/>
+            <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="newmodal">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="registerModalLabel">CADASTRO</h5>
+                    <button type="button" style={{fontSize: "20px"}} class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body" style={{left: "11px"}}>
+                    <Register/>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <button type="button" className="button" data-toggle="modal" data-target="#loginModal">
-          Login
-          </button>
+            <button type="button" className="button" data-toggle="modal" data-target="#loginModal">LOGIN</button>
 
-          <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="newmodal">
-              <div class="modal-header">
-                <h5 class="modal-title" id="loginModalLabel">Login</h5>
-                <button type="button" style={{fontSize: "20px"}} class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-                <div class="modal-body">
-                  <Login/>
+            <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="newmodal">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="loginModalLabel">LOGIN</h5>
+                    <button type="button" style={{fontSize: "20px"}} class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body" style={{left: "11px"}}>
+                    <Login/>
+                  </div>
                 </div>
               </div>
             </div>
