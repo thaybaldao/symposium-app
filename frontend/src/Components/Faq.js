@@ -9,7 +9,7 @@ const data = {
     },
     {
       title: "O evento é gratuito?",
-      content: "O evento é gratuito apenas para estudandte do ensino fundamental. Para as demais inscritas existe uma taxa de R$50,00 para participação, caso seja apresentado algum trabalho a taxa é de R$70,00. Lembramos que existe um programa de isenção de taxa de inscrição, entre em contato para mais detalhes."
+      content: "O evento é gratuito apenas para estudantes do ensino fundamental. Para as demais inscritas existe uma taxa de R$50,00 para participação, caso seja apresentado algum trabalho a taxa é de R$70,00. Lembramos que existe um programa de isenção de taxa de inscrição, entre em contato para mais detalhes."
     },
     {
       title: "Posso me inscrever no evento mesmo não sendo estudante de engenharia?",
@@ -34,7 +34,7 @@ class FAQSession extends Component {
     return (
       <section id="faq" className="section darkRed">
         <div className="row">
-           <div className="seven columns main-col">
+           <div className="columns main-col">
               <h2>FAQ</h2>
               <div >
                 <Faq data={data} styles={styles}/>

@@ -101,8 +101,8 @@
     padding: 20px 20px;
   }
   
-  .schedule .schedule-tab-title .nav-tabs .nav-item.show .nav-link, .schedule .schedule-tab-title .nav-tabs .nav-link.active,
-  .schedule .schedule-tab-title .nav-tabs .nav-item .nav-link:hover {
+  .schedule .schedule-tab-title .nav-tabs .nav-item.show .nav-link, 
+  .schedule .schedule-tab-title .nav-tabs .nav-link.active {
     background: #b72c2c;
     border: 1px solid #b72c2c;
     transition: all 0.3s ease-in-out 0s;
@@ -111,6 +111,16 @@
     -o-transition: all 0.3s ease-in-out 0s;
   }
   
+  .schedule .schedule-tab-title .nav-tabs .nav-item .nav-link:hover {
+    background: #d39898;
+    border: 1px solid #d39898;
+    transition: all 0.3s ease-in-out 0s;
+    -moz-transition: all 0.3s ease-in-out 0s;
+    -webkit-transition: all 0.3s ease-in-out 0s;
+    -o-transition: all 0.3s ease-in-out 0s;
+  }
+
+
   .schedule .schedule-tab-title .nav-tabs .nav-item.show .nav-link h4, .schedule .schedule-tab-title .nav-tabs .nav-link.active h4,
   .schedule .schedule-tab-title .nav-tabs .nav-item .nav-link:hover h4 {
     color: #fff;
@@ -203,4 +213,8 @@
   .schedule .card-body .location span {
     color: #b72c2c;
     margin-right: 5px;
+  }
+
+  .carousel-inner {
+    box-shadow: 1px 3px 15px rgba(0, 0, 0, 1);
   }
