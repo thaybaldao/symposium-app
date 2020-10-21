@@ -47,9 +47,9 @@ class SubscribeListener extends Component {
         <div>
            <div className="inside-modal">
               <Form onSubmit={this.mySubmitHandler} ref={c => { this.form = c; }}>
-                <p>Confirme sua inscrição no Simpósio como OUVINTE clicando no botão abaixo.</p>
+                <p>Confirme sua inscrição no SMSTEM como OUVINTE.</p>
 
-                <Input type='submit' className="button" value='Inscrever'/>
+                <Input type='submit' className="button btn register-btn" value='INSCREVER'/>
               </Form>
            </div>
         </div>
