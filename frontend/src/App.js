@@ -1,11 +1,9 @@
-import React, { Component, useEffect } from 'react';
+import React, { Component } from 'react';
 import ReactGA from 'react-ga';
 import $ from 'jquery';
 import './App.css';
 
 import AuthService from "./Services/AuthService"
-import axios from 'axios';
-
 import Countdown from './Components/Countdown.js';
 import About from './Components/About';
 import FAQSession from './Components/Faq';
@@ -24,8 +22,7 @@ class App extends Component {
 
     this.state = {
       foo: 'bar',
-      data: {},
-      currentUser: null,
+      data: {}
     };
 
     ReactGA.initialize('UA-110570651-1');
@@ -53,9 +50,6 @@ class App extends Component {
   }
 
   render() {
-
-    const { currentUser } = this.state;
-
     return (
       <div className="App">
         <Header />

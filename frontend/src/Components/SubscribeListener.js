@@ -1,26 +1,10 @@
 import React, { Component } from 'react';
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
-import Select from "react-validation/build/select";
-import validator from "validator";
 
 import AuthService from "../Services/AuthService.js";
 
-const required = value => {
-  if (!value) {
-    return (
-      <div className="alert alert-danger" role="alert" style={{maxWidth:"95%"}}>
-        Este campo é obrigatório!
-      </div>
-    );
-  }
-};
-
 class SubscribeListener extends Component {
-  constructor(props) {
-      super(props);
-  }
-
   mySubmitHandler = async e => {
     this.form.validateAll();
     e.preventDefault();

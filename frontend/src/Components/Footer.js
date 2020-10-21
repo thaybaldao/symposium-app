@@ -9,7 +9,7 @@ class Footer extends Component {
       })
       var supporters= this.props.data.support.map(function(support){
         var path = "../Images/"+ support.image
-        return <li key={support.name}><a href={support.url}><img src={require('../Images/ita.png')}/></a></li>
+        return <li key={support.name}><a href={support.url}><img src={require('../Images/ita.png')} alt="ita"/></a></li>
       })
     }
 

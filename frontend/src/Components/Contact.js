@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
-import Select from "react-validation/build/select";
 import validator from "validator";
 
 const email = (value) => {
@@ -27,10 +26,7 @@ const required = value => {
 class Contact extends Component {
   constructor(props) {
       super(props);
-      this.state = { name: '', email: '', password:'',
-                    rg: '', cpf: '', tel: '', birth: '', nivel: '',
-                    job: '', place: ''
-                   };
+      this.state = { name: '', email: '', message: ''};
   }
   myChangeHandler = (event) => {
     let nam = event.target.name;
@@ -41,6 +37,7 @@ class Contact extends Component {
   mySubmitHandler = async e => {
     this.form.validateAll();
     e.preventDefault();
+
     try {
       const body = this.state;
 
@@ -50,7 +47,7 @@ class Contact extends Component {
         body: JSON.stringify(body)
       });
 
-      window.location = "/";
+      window.location.reload(false);
     } catch (err) {
       console.error(err.message);
     }
