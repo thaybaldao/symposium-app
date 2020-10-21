@@ -22,14 +22,14 @@ node index.js
 
 ## Organização do Projeto:
 
-#### * ./frontend*
+#### *./frontend*
 ##### Contém os arquivos relacionados ao *frontend* da aplicação.
 * package.json: são os *requirements* da seção
 * /Components: contém as definições dos *React class components* utilizados
 * /Services: arquivos de autenticação para usuários
 * /src/App.js: arquivo principal de montagem da página
 
-#### * ./backend*
+#### *./backend*
 ##### Contém os arquivos relacionados ao *backend* da aplicação.
 * package.json: são os *requirements* da seção
 * databse.sql: script base para as tableas do banco de dados
