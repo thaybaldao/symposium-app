@@ -74,8 +74,12 @@ app.post('/login', async (req, res) => {
     // get basic user details
     const userObj = utils.getCleanUser(curr.rows[0]);
 
+    const subscribedAsLitener = await pool.query("SELECT * FROM listener_subscriptions WHERE user_id = $1", [userObj.user_id]);
+    const subscribedAsPresenter = await pool.query("SELECT * FROM presenter_subscriptions WHERE user_id = $1", [userObj.user_id]);
+    const subscribed = (subscribedAsLitener.rows[0] !== undefined) || (subscribedAsPresenter.rows[0] !== undefined);
+
     // return the token along with user details
-    return res.json({ user: userObj, token });
+    return res.json({ user: userObj, subscribed: subscribed, token });
 
   } catch (err) {
     console.error(err.message);
@@ -116,7 +120,6 @@ app.get('/verifyToken', function (req, res) {
 // register new user
 app.post("/register", async (req, res) => {
   try {
-
     const body = req.body;
 
     const newUser = await pool.query(
@@ -134,6 +137,7 @@ app.post("/register", async (req, res) => {
 app.post("/subscribe/listener", async (req, res) => {
   try {
     const body = req.body;
+
     const newListenerSubscription = await pool.query(
       "INSERT INTO listener_subscriptions (user_id)\
        VALUES ($1);",[body.user_id]);

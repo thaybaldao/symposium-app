@@ -33,6 +33,8 @@ class SubscribeListener extends Component {
         body: JSON.stringify(body)
       });
 
+      AuthService.setIsSubscribed();
+
       window.location = "/";
     } catch (err) {
       console.error(err.message);
