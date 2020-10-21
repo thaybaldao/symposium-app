@@ -20,7 +20,7 @@ class RegisterModal extends Component {
       <div>
       {this.isLoggedIn ?
        (
-        <section id="inscricao" className="section lightRed" style={{color: "#000000"}}>
+        <section id="inscricao" className="section lightRed" style={{color: "#000000", textAlign: "center"}}>
           <button type="button" className="button" data-toggle="modal" data-target="#registerModal">
           Register
           </button>

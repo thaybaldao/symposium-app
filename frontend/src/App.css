@@ -143,8 +143,10 @@ ul#nav li.current a {
     width: 300px;
     font: 15px 'opensans-bold', sans-serif;
     background-color: #560707;
-    border-radius: 10px;
-    margin-left: 10%;
+    border-radius: 15px;
+    display: inline-block;
+    margin-left: 15px;
+    margin-right: 15px;
 }
 
 .button:hover {
