@@ -162,7 +162,7 @@ ul#nav li.current a {
   flex-direction: column;
   width: 100%;
   pointer-events: auto;
-  background-color: #FFD9D9;
+  background-color: #FFFFFF;
   background-clip: padding-box;
   border-radius: 10px;
   outline: 0;

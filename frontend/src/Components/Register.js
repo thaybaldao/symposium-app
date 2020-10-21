@@ -21,14 +21,14 @@ const number = (value) => {
         {`${value} não é uma sequência de números.`}
       </div>
     );
-    
+
   }
 };
 
 const required = value => {
   if (!value) {
     return (
-      <div className="alert alert-warning" role="alert">
+      <div className="alert alert-danger" role="alert" style={{maxWidth:"95%"}}>
         Este campo é obrigatório!
       </div>
     );
@@ -93,8 +93,8 @@ class Register extends Component {
                 <Input type="text" className="form-control" name='tel' value={this.state.tel} onChange={this.myChangeHandler} validations={[required]}/>
 
                 <p class="modal-field">Data de Nascimento:</p>
-                <Input type="date" className="form-control form-control-lg" style={{marginBottom: "24px"}} name='birth' value={this.state.birth} onChange={this.myChangeHandler} validations={[required]}/>
-                
+                <Input type="date" className="form-control form-control-lg" style={{maxWidth:"95%", left:"11px"}} name='birth' value={this.state.birth} onChange={this.myChangeHandler} validations={[required]}/>
+
                 <p class="modal-field">Nível de Escolaridade:</p>
                 <Select name="nivel" className="form-control form-control-lg" value={this.state.nivel} onChange={this.myChangeHandler} validations={[required]}>
                   <option value="fundamental">Ensino Fundamental</option>
