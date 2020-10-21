@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 import ReactGA from 'react-ga';
 import $ from 'jquery';
 import './App.css';
 
 import AuthService from "./Services/AuthService"
+import axios from 'axios';
 
 import Countdown from './Components/Countdown.js';
 import About from './Components/About';

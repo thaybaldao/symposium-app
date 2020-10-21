@@ -10,14 +10,6 @@ const pool = require("./db");
 const app = express();
 const port = process.env.PORT || 4000;
 
-// static user details
-const userData = {
-  userId: "789789",
-  password: "123456",
-  name: "Clue Mediator",
-  username: "cluemediator"
-};
-
 // enable CORS
 app.use(cors());
 // parse application/json
@@ -109,7 +101,7 @@ app.get('/verifyToken', function (req, res) {
     });
 
     // return 401 status if the userId does not match.
-    if (user.userId !== userData.userId) {
+    if (user.user_id !== userData.user_id) {
       return res.status(401).json({
         error: true,
         message: "Invalid user."
@@ -121,19 +113,8 @@ app.get('/verifyToken', function (req, res) {
   });
 });
 
-// get users from db
-app.get("/all", async (req, res) => {
-  try {
-    const allUsers = await pool.query("SELECT * FROM users");
-    res.json(allUsers.rows);
-
-  } catch (err) {
-    console.error(err.message);
-  }
-})
-
-// add new user
-app.post("/new", async (req, res) => {
+// register new user
+app.post("/register", async (req, res) => {
   try {
 
     const body = req.body;
@@ -144,6 +125,36 @@ app.post("/new", async (req, res) => {
        body.password, body.rg, body.cpf, body.tel, body.birth, body.nivel, body.job, body.place]);
 
     res.json(newUser.rows[0]);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
+// subscribe listener
+app.post("/subscribe/listener", async (req, res) => {
+  try {
+    const body = req.body;
+    const newListenerSubscription = await pool.query(
+      "INSERT INTO listener_subscriptions (user_id)\
+       VALUES ($1);",[body.user_id]);
+
+    res.json(newListenerSubscription.rows[0]);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
+// subscribe presenter
+app.post("/subscribe/presenter", async (req, res) => {
+  try {
+    const body = req.body;
+    console.log(body);
+
+    const newPresenterSubscription = await pool.query(
+      "INSERT INTO presenter_subscriptions (title, authors, abstract, user_id)\
+       VALUES ($1, $2, $3, $4);",[body.title, body.authors, body.abstract, body.user_id]);
+
+    res.json(newPresenterSubscription.rows[0]);
   } catch (err) {
     console.error(err.message);
   }

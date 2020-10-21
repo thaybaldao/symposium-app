@@ -12,6 +12,7 @@ class AuthService {
       .then(response => {
         if (response.data.token) {
           localStorage.setItem("user", JSON.stringify(response.data.user));
+          localStorage.setItem("token", JSON.stringify(response.data.token));
         }
         console.log(response);
         return response.data;
@@ -20,11 +21,22 @@ class AuthService {
 
   logout() {
     localStorage.removeItem("user");
+    localStorage.removeItem("token");
   }
 
   getCurrentUser() {
-    return JSON.parse(localStorage.getItem('user'));
+    const userStr = localStorage.getItem("user");
+    if (userStr) {
+      return JSON.parse(userStr);
+    } else {
+      return null;
+    }
   }
+
+  getToken() {
+    return localStorage.getItem("token") || null;
+  }
+
 }
 
 export default new AuthService();
