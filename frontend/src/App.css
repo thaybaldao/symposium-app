@@ -12,7 +12,8 @@
 }
 
 .register-btn:hover{
-   background-color: #d25d5d !important;
+  background-color: #d39898 !important;
+  color: #FFFFFF !important;
 }
 
 ul#nav li a:active {

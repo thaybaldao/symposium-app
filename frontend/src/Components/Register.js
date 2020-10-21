@@ -95,7 +95,7 @@ class Register extends Component {
                 <p class="modal-field">Data de Nascimento:</p>
                 <Input type="date" className="form-control form-control-lg" style={{maxWidth:"95%", left:"11px"}} name='birth' value={this.state.birth} onChange={this.myChangeHandler} validations={[required]}/>
 
-                <p class="modal-field">Nível de Escolaridade:</p>
+                <p class="modal-field" style={{marginTop: "20px"}}>Nível de Escolaridade:</p>
                 <Select name="nivel" className="form-control form-control-lg" value={this.state.nivel} onChange={this.myChangeHandler} validations={[required]}>
                   <option value="fundamental">Ensino Fundamental</option>
                   <option value="medio">Ensino Médio</option>
@@ -109,7 +109,7 @@ class Register extends Component {
                 <p class="modal-field">Organização:</p>
                 <Input type="text" className="form-control" name='place' value={this.state.place} onChange={this.myChangeHandler} validations={[required]}/>
 
-                <Input type='submit' className="button" value='Inscrever'/>
+                <Input type='submit' className="button btn register-btn" value='CADASTRAR'/>
               </Form>
            </div>
         </div>

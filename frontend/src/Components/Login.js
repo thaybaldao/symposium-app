@@ -117,13 +117,13 @@ class Login extends Component {
 
 
               <button
-                className="button"
+                className="button btn register-btn"
                 disabled={this.state.loading}
               >
                 {this.state.loading && (
                   <span className="spinner-border spinner-border-sm" style={{marginRight: "5px", marginBottom: "3px"}}></span>
                 )}
-                <span>Login</span>
+                <span>LOGIN</span>
               </button>
 
 

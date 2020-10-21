@@ -25,13 +25,12 @@ class RegisterModal extends Component {
             Caso você ainda não possua uma conta, preencha o formulário de cadastro. Em seguida, efetue login nesta página.</p>
           </div>
           <div style={{color: "#000000", textAlign: "center"}}>
-            <button type="button" className="button" data-toggle="modal" data-target="#registerModal">CADASTRO</button>
+            <button type="button" className="button btn register-btn" data-toggle="modal" data-target="#registerModal">CADASTRO</button>
 
-            <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true">
+            <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-hidden="true">
               <div class="modal-dialog" role="document">
                 <div class="newmodal">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="registerModalLabel">CADASTRO</h5>
                     <button type="button" style={{fontSize: "20px"}} class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
@@ -43,13 +42,12 @@ class RegisterModal extends Component {
               </div>
             </div>
 
-            <button type="button" className="button" data-toggle="modal" data-target="#loginModal">LOGIN</button>
+            <button type="button" className="button btn register-btn" data-toggle="modal" data-target="#loginModal">LOGIN</button>
 
-            <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+            <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-hidden="true">
               <div class="modal-dialog" role="document">
                 <div class="newmodal">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="loginModalLabel">LOGIN</h5>
                     <button type="button" style={{fontSize: "20px"}} class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>

@@ -31,7 +31,7 @@ class Schedule extends Component {
                       </div>
                     </a>
                   </li>
-                  
+
                 </ul>
               </div>
             </div>
@@ -42,9 +42,9 @@ class Schedule extends Component {
                     <div class="card">
                       <div id="headingOne">
                         <div class="collapsed card-header" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                                              
+
                           <span class="time">10:00 - 11:30</span>
-                          <h4>Palestra de abertura</h4>
+                          <h4 style={{color: "#560707"}}>Palestra de abertura</h4>
                           <h5 class="name">Valéria Spechotto</h5>
                         </div>
                       </div>
@@ -60,9 +60,9 @@ class Schedule extends Component {
                     <div class="card">
                       <div id="headingTwo">
                         <div class="collapsed card-header" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                              
+
                           <span class="time">11:30 - 12:30</span>
-                          <h4>Mesa Redonda</h4>
+                          <h4 style={{color: "#560707"}}>Mesa Redonda</h4>
                           <h5 class="name">Betina Roxo e Lara Teles</h5>
                         </div>
                       </div>
@@ -78,9 +78,9 @@ class Schedule extends Component {
                     <div class="card">
                       <div id="headingThree">
                         <div class="collapsed card-header" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                               
+
                           <span class="time">12:30 - 14:30</span>
-                          <h4>Aumentando a diversidade</h4>
+                          <h4 style={{color: "#560707"}}>Aumentando a diversidade</h4>
                           <h5 class="name">Adriana Tonini</h5>
                         </div>
                       </div>
@@ -100,7 +100,7 @@ class Schedule extends Component {
                     <div class="card">
                       <div id="headingOne1">
                         <div class="collapsed card-header" data-toggle="collapse" data-target="#collapseOne1" aria-expanded="false" aria-controls="collapseOne1">
-                                           
+
                           <span class="time">10:00 - 11:30</span>
                           <h4>Mesa Redonda</h4>
                           <h5 class="name">Silvia Pimentel e Lara Teles</h5>
@@ -117,7 +117,7 @@ class Schedule extends Component {
                     </div>
                     <div class="card">
                       <div id="headingTwo2">
-                        <div class="collapsed card-header" data-toggle="collapse" data-target="#collapseTwo2" aria-expanded="false" aria-controls="collapseTwo2">                    
+                        <div class="collapsed card-header" data-toggle="collapse" data-target="#collapseTwo2" aria-expanded="false" aria-controls="collapseTwo2">
                           <span class="time">11:30 - 14:30</span>
                           <h4>Como é ser mulher no meio acadêmico</h4>
                           <h5 class="name">Márcia Barbosa</h5>
