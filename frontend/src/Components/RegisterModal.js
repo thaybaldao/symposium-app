@@ -1,25 +1,22 @@
 import React, { Component } from 'react';
 import Register from './Register';
 import Login from './Login';
+import Subscription from './Subscription';
 
 import AuthService from "../Services/AuthService.js";
 
 class RegisterModal extends Component {
   constructor(props) {
     super(props);
-    this.isLoggedIn = props.isLoggedIn;
-    this.logOut = this.logOut.bind(this);
-  }
-
-  logOut() {
-    AuthService.logout();
+    this.loggedIn = props.loggedIn;
   }
 
   render() {
     return (
       <div>
-      {this.isLoggedIn ?
+      {this.loggedIn ?
        (
+
         <section id="inscricao" className="section lightRed" style={{color: "#000000", textAlign: "center"}}>
           <button type="button" className="button" data-toggle="modal" data-target="#registerModal">
           Register
@@ -37,8 +34,8 @@ class RegisterModal extends Component {
               <div class="modal-body">
                 <Register/>
               </div>
+              </div>
             </div>
-          </div>
           </div>
 
           <button type="button" className="button" data-toggle="modal" data-target="#loginModal">
@@ -57,14 +54,12 @@ class RegisterModal extends Component {
               <div class="modal-body">
                 <Login/>
               </div>
+              </div>
             </div>
-          </div>
           </div>
         </section>
       ) : (
-        <a href="/login" onClick={this.logOut}>
-                LogOut
-         </a>
+        <Subscription subscribed={AuthService.getIsSubscribed()} />
       )}
       </div>
     );

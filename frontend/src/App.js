@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 import ReactGA from 'react-ga';
 import $ from 'jquery';
 import './App.css';
 
 import AuthService from "./Services/AuthService"
+import axios from 'axios';
 
 import Countdown from './Components/Countdown.js';
 import About from './Components/About';
@@ -63,7 +64,7 @@ class App extends Component {
         <Speakers />
         <Schedule />
         <FAQSession />
-        <RegisterModal isLoggedIn={AuthService.getCurrentUser() === null} />
+        <RegisterModal loggedIn={AuthService.getCurrentUser() === null}/>
         <ShowMap />
         <Footer data={this.state.data.main}/>
       </div>
