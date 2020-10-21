@@ -8,13 +8,13 @@ import axios from 'axios';
 
 import Countdown from './Components/Countdown.js';
 import About from './Components/About';
-import Contact from './Components/Contact';
 import FAQSession from './Components/Faq';
 import Header from './Components/Header';
 import RegisterModal from './Components/RegisterModal';
 import Schedule from './Components/Schedule';
 import Speakers from './Components/Speakers';
 import ShowMap from './Components/Map';
+import Contact from './Components/Contact';
 import Footer from './Components/Footer';
 
 class App extends Component {
@@ -66,6 +66,7 @@ class App extends Component {
         <RegisterModal loggedIn={AuthService.getCurrentUser() === null}/>
         <FAQSession />
         <ShowMap />
+        <Contact />
         <Footer data={this.state.data.main}/>
       </div>
     );

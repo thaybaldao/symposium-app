@@ -1,14 +1,84 @@
 import React, { Component } from 'react';
+import Form from "react-validation/build/form";
+import Input from "react-validation/build/input";
+import Select from "react-validation/build/select";
+import validator from "validator";
+
+const email = (value) => {
+  if (!validator.isEmail(value)) {
+    return (
+      <div className="alert alert-warning" role="alert">
+        {`${value} não é um email válido.`}
+      </div>
+    );
+  }
+};
+
+const required = value => {
+  if (!value) {
+    return (
+      <div className="alert alert-danger" role="alert" style={{maxWidth:"95%"}}>
+        Este campo é obrigatório!
+      </div>
+    );
+  }
+};
 
 class Contact extends Component {
+  constructor(props) {
+      super(props);
+      this.state = { name: '', email: '', password:'',
+                    rg: '', cpf: '', tel: '', birth: '', nivel: '',
+                    job: '', place: ''
+                   };
+  }
+  myChangeHandler = (event) => {
+    let nam = event.target.name;
+    let val = event.target.value;
+    this.setState({[nam]: val});
+  }
+
+  mySubmitHandler = async e => {
+    this.form.validateAll();
+    e.preventDefault();
+    try {
+      const body = this.state;
+
+      const response = await fetch("http://localhost:4000/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body)
+      });
+
+      window.location = "/";
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+
   render() {
     return (
-      <section id="contato" className="section lightPink">
+      <section id="contato" className="section white">
         <div className="row">
-           <div className="nine columns main-col">
-              <h2>Contact</h2>
-           </div>
+          <h2>Contato</h2>
         </div>
+        <div className="row">
+          <p>Tem alguma dúvida? Envie-nos uma mensagem!</p>
+        </div>
+       <div className="row">
+          <Form onSubmit={this.mySubmitHandler} ref={c => { this.form = c; }}>
+            <p class="modal-field">Nome Completo:</p>
+            <Input type="text" className="form-control" name='name' value={this.state.name} onChange={this.myChangeHandler} validations={[required]}/>
+
+            <p class="modal-field">E-mail:</p>
+            <Input type="text" className="form-control" name='email' value={this.state.email} onChange={this.myChangeHandler} validations={[required, email]}/>
+
+            <p class="modal-field">Mensagem:</p>
+            <textarea type="text" className="form-control" name='message' value={this.state.abstract} onChange={this.myChangeHandler} validations={[required]}/>
+
+            <Input type='submit' className="button btn register-btn" value='ENVIAR'/>
+          </Form>
+       </div>
       </section>
     );
   }
