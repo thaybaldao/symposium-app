@@ -55,8 +55,10 @@ ul#nav li.current a {
 }
 
 .section h2 {
-   font: 22px/30px 'opensans-bold', sans-serif;
+   font: 20px 'opensans-bold', sans-serif;
+   font-weight: bold;
    margin-bottom: 12px;
+   text-transform: uppercase;
 }
 .section p {
    line-height: 30px;
