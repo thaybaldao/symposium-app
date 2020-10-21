@@ -8,10 +8,9 @@ class About extends Component {
 
            <div className="columns main-col">
               <h2>Sobre</h2>
-              
             </div>
 
-            <div id="carouselExampleIndicators" class="carousel slide col-md-12" data-ride="carousel">
+            <div id="carouselExampleIndicators" class="carousel slide col-md-12" data-ride="carousel" style={{marginTop: "20px"}}>
             <ol class="carousel-indicators">
               <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
               <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -39,30 +38,30 @@ class About extends Component {
           </div>
 
           <div className="col-md-12" style={{marginTop: "10px"}}>
-          <p style={{textAlign: "justify"}}>O I Simpósio Mulheres em STEM visa promover o encontro de mulheres de todo o Brasil para divulgar seus trabalhos acadêmicos, gerar networking e discutir questões de igualdade de gênero.</p>
-              
+          <p style={{textAlign: "justify", marginTop: "20px"}}>O I Simpósio Mulheres em STEM visa promover o encontro de mulheres de todo o Brasil para divulgar seus trabalhos acadêmicos, gerar networking e discutir questões de igualdade de gênero.</p>
+
             </div>
 
-          
+
 
             <div className="col-md-4" style={{textAlign: "center"}}>
             <i class="fa fa-3x fa-users"></i>
-            <p>Público-alvo: universitários</p>
+            <p>Público livre</p>
             </div>
 
             <div className="col-md-4" style={{textAlign: "center"}}>
             <i class="fa fa-3x fa-clock-o"></i>
-            <p>Datas: 13 e 14 de março de 2020</p>
+            <p>13 e 14 de março de 2020</p>
             </div>
 
             <div className="col-md-4" style={{textAlign: "center"}}>
             <i class="fa fa-3x fa-map-marker"></i>
-            <p>Local: ITA, São José dos Campos - SP</p>
+            <p>ITA, São José dos Campos - SP</p>
             </div>
 
-            
-           
-           
+
+
+
         </div>
       </section>
     );
