@@ -44,12 +44,12 @@ class SubscribeListener extends Component {
   render() {
     return (
       <section id="inscricao">
-        <div className="row">
-           <div className="nine columns main-col">
+        <div>
+           <div className="inside-modal">
               <Form onSubmit={this.mySubmitHandler} ref={c => { this.form = c; }}>
-                <p>Confirme sua inscrição no Simpósio como OUVIENTE clicando no botão abaixo.</p>
+                <p>Confirme sua inscrição no Simpósio como OUVINTE clicando no botão abaixo.</p>
 
-                <Input type='submit' value='Inscrever'/>
+                <Input type='submit' className="button" value='Inscrever'/>
               </Form>
            </div>
         </div>

@@ -31,9 +31,9 @@ class RegisterModal extends Component {
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <div class="modal-body">
-                <Register/>
-              </div>
+                <div class="modal-body">
+                  <Register/>
+                </div>
               </div>
             </div>
           </div>
@@ -51,9 +51,9 @@ class RegisterModal extends Component {
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <div class="modal-body">
-                <Login/>
-              </div>
+                <div class="modal-body">
+                  <Login/>
+                </div>
               </div>
             </div>
           </div>
