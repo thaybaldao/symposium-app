@@ -12,14 +12,11 @@ class Countdown extends React.Component {
     componentDidMount() {
         this.interval = setInterval(() => {
             const { timeTillDate, timeFormat } = this.props;
-            const then = moment(timeTillDate, timeFormat);
-            const now = moment();
-            const countdown = moment(then - now);
-            const days = countdown.format('D');
-            const hours = countdown.format('HH');
-            const minutes = countdown.format('mm');
-            const seconds = countdown.format('ss');
-
+            const total = Date.parse(timeTillDate) - Date.parse(new Date());
+            const seconds = Math.floor( (total/1000) % 60 );
+            const minutes = Math.floor( (total/1000/60) % 60 );
+            const hours = Math.floor( (total/(1000*60*60)) % 24 );
+            const days = Math.floor( total/(1000*60*60*24) );
             this.setState({ days, hours, minutes, seconds  });
         }, 1000);
     }

@@ -53,7 +53,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <Countdown timeTillDate="12 30 2020, 8:00 am" timeFormat="MM DD YYYY, h:mm a" />
+        <Countdown timeTillDate="03 13 2021, 8:00 am" timeFormat="MM DD YYYY, h:mm a" />
         <About />
         <Speakers />
         <Schedule />

@@ -51,7 +51,7 @@ class About extends Component {
 
             <div className="col-md-4" style={{textAlign: "center"}}>
             <i class="fa fa-3x fa-clock-o"></i>
-            <p>13 e 14 de março de 2020</p>
+            <p>13 e 14 de março de 2021</p>
             </div>
 
             <div className="col-md-4" style={{textAlign: "center"}}>
