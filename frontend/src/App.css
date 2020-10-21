@@ -138,3 +138,16 @@ ul#nav li.current a {
     width: 100px;
     height: 100px;
 }
+
+.button {
+    width: 300px;
+    font: 15px 'opensans-bold', sans-serif;
+    background-color: #560707;
+    border-radius: 10px;
+    margin-left: 10%;
+}
+
+.button:hover {
+    background-color: #D39898;
+    color: #000000;
+}

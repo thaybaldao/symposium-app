@@ -21,7 +21,7 @@ class RegisterModal extends Component {
       {this.isLoggedIn ?
        (
         <section id="inscricao" className="section lightRed" style={{color: "#000000"}}>
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#registerModal">
+          <button type="button" className="button" data-toggle="modal" data-target="#registerModal">
           Register
           </button>
 
@@ -41,7 +41,7 @@ class RegisterModal extends Component {
           </div>
           </div>
 
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModal">
+          <button type="button" className="button" data-toggle="modal" data-target="#loginModal">
           Login
           </button>
 
