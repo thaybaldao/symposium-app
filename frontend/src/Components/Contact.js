@@ -65,7 +65,7 @@ class Contact extends Component {
         <div className="row">
           <p>Tem alguma dúvida? Envie-nos uma mensagem!</p>
         </div>
-       <div className="row">
+       <div className="centered-form">
           <Form onSubmit={this.mySubmitHandler} ref={c => { this.form = c; }}>
             <p class="modal-field">Nome Completo:</p>
             <Input type="text" className="form-control" name='name' value={this.state.name} onChange={this.myChangeHandler} validations={[required]}/>
@@ -76,7 +76,7 @@ class Contact extends Component {
             <p class="modal-field">Mensagem:</p>
             <textarea type="text" className="form-control" name='message' value={this.state.abstract} onChange={this.myChangeHandler} validations={[required]}/>
 
-            <Input type='submit' className="button btn register-btn" value='ENVIAR'/>
+            <Input type='submit' className="button btn register-btn button-contact" value='ENVIAR'/>
           </Form>
        </div>
       </section>

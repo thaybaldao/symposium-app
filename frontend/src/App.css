@@ -182,3 +182,13 @@ ul#nav li.current a {
   font: 25px 'opensans-bold', sans-serif;
   color: #550000;
 }
+
+.centered-form {
+  position: relative;
+  width: 50%;
+  left: 25%;
+}
+.button-contact {
+  position: relative;
+  left: 25%;
+}
