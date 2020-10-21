@@ -93,13 +93,8 @@ class Register extends Component {
                 <Input type="text" className="form-control" name='tel' value={this.state.tel} onChange={this.myChangeHandler} validations={[required]}/>
 
                 <p class="modal-field">Data de Nascimento:</p>
-<<<<<<< HEAD
                 <Input type="date" className="form-control form-control-lg" style={{maxWidth:"95%", left:"11px"}} name='birth' value={this.state.birth} onChange={this.myChangeHandler} validations={[required]}/>
 
-=======
-                <Input type="date" className="form-control form-control-lg" style={{marginBottom: "24px"}} name='birth' value={this.state.birth} onChange={this.myChangeHandler} validations={[required]}/>
-
->>>>>>> f8cac091bec4bee93262f89e9fd8b131116a61d7
                 <p class="modal-field">Nível de Escolaridade:</p>
                 <Select name="nivel" className="form-control form-control-lg" value={this.state.nivel} onChange={this.myChangeHandler} validations={[required]}>
                   <option value="fundamental">Ensino Fundamental</option>
