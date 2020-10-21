@@ -50,19 +50,19 @@ class SubscribePresenter extends Component {
   render() {
     return (
       <section id="inscricao">
-        <div className="row">
-           <div className="nine columns main-col">
+        <div>
+           <div className="inside-modal">
               <Form onSubmit={this.mySubmitHandler} ref={c => { this.form = c; }}>
-                <p>Título:</p>
-                <Input type="text" name='title' value={this.state.title} onChange={this.myChangeHandler} validations={[required]}/>
+                <p class="modal-field">Título:</p>
+                <Input type="text" className="form-control" name='title' value={this.state.title} onChange={this.myChangeHandler} validations={[required]}/>
 
-                <p>Autores:</p>
-                <Input type="text" name='authors' value={this.state.authors} onChange={this.myChangeHandler} validations={[required]}/>
+                <p class="modal-field">Autores:</p>
+                <Input type="text" className="form-control" name='authors' value={this.state.authors} onChange={this.myChangeHandler} validations={[required]}/>
 
-                <p>Resumo:</p>
-                <textarea type="text" name='abstract' value={this.state.abstract} onChange={this.myChangeHandler} validations={[required]}/>
+                <p class="modal-field">Resumo:</p>
+                <textarea type="text" className="form-control" name='abstract' value={this.state.abstract} onChange={this.myChangeHandler} validations={[required]}/>
 
-                <Input type='submit' value='Inscrever'/>
+                <Input type='submit' className="form-control" className="button" value='Inscrever'/>
               </Form>
            </div>
         </div>

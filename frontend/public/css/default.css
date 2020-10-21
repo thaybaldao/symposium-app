@@ -535,11 +535,11 @@ select {
    outline: none;
    vertical-align: middle;
    min-width: 225px;
-	max-width: 100%;
+	 max-width: 100%;
    font-size: 15px;
    line-height: 24px;
-	color: #647373;
-	background: #D3D9D9;
+	 color: #550000;
+	 background: #D3D9D9;
 
 }
 
@@ -551,8 +551,8 @@ input[type="text"]:focus,
 input[type="password"]:focus,
 input[type="email"]:focus,
 textarea:focus {
-   color: #B3B7BC;
-	background-color: #3d4145;
+   color: #550000;
+	 background-color: #C7C7C7;
 }
 
 textarea { min-height: 220px; }

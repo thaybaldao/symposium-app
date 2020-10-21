@@ -54,7 +54,7 @@ class Register extends Component {
     e.preventDefault();
     try {
       const body = this.state;
-      
+
       const response = await fetch("http://localhost:4000/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -72,8 +72,6 @@ class Register extends Component {
       <section id="inscricao">
         <div>
            <div className="inside-modal">
-              
-
 
               <Form onSubmit={this.mySubmitHandler} ref={c => { this.form = c; }}>
                 <p class="modal-field">Nome Completo:</p>

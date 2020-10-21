@@ -22,21 +22,21 @@ class Subscription extends Component {
       <div>
         {this.subscribed ?
           (
-            <section id="inscricao" className="section lightRed" style={{color: "#000000"}}>
-              <button type="button" class="btn btn-primary" onClick={this.logOut}>Logout</button>
+            <section id="inscricao" className="section lightRed" style={{color: "#000000", textAlign: "center"}}>
+              <button type="button" class="button" onClick={this.logOut}>Logout</button>
               <p> Ótimo! Você já está escrito no Simpósio Brasileiro de Mulheres em STEM2D! </p>
             </section>
           ) : (
-            <section id="inscricao" className="section lightRed" style={{color: "#000000"}}>
-              <button type="button" class="btn btn-primary" onClick={this.logOut}>Logout</button>
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#subscribeListenerModal">Inscrição Ouvinte</button>
+            <section id="inscricao" className="section lightRed" style={{color: "#000000", textAlign: "center"}}>
+              <button type="button" class="button" onClick={this.logOut}>Logout</button>
+              <button type="button" class="button" data-toggle="modal" data-target="#subscribeListenerModal">Inscrição Ouvinte</button>
 
               <div class="modal fade" id="subscribeListenerModal" tabindex="-1" role="dialog" aria-labelledby="subscribeListenerModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
-                  <div class="modal-content">
+                  <div class="newmodal">
                     <div class="modal-header">
                       <h5 class="modal-title" id="subscribeListenerModalLabel">Inscrição Ouvinte</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <button type="button" style={{fontSize: "20px"}} class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
                     </div>
@@ -47,14 +47,14 @@ class Subscription extends Component {
                 </div>
               </div>
 
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#subscribePresenterModal">Inscrição Apresentador</button>
+              <button type="button" class="button" data-toggle="modal" data-target="#subscribePresenterModal">Inscrição Apresentador</button>
 
               <div class="modal fade" id="subscribePresenterModal" tabindex="-1" role="dialog" aria-labelledby="subscribePresenterModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
-                  <div class="modal-content">
+                  <div class="newmodal">
                     <div class="modal-header">
                       <h5 class="modal-title" id="subscribePresenterModalLabel">Inscrição Apresentador</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <button type="button" style={{fontSize: "20px"}} class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
                     </div>
