@@ -7,10 +7,6 @@ class Footer extends Component {
       var networks= this.props.data.social.map(function(network){
         return <li key={network.name}><a href={network.url} target="_blank"><i className={network.className}></i></a></li>
       })
-      var supporters= this.props.data.support.map(function(support){
-        var path = "../Images/"+ support.image
-        return <li key={support.name}><a href={support.url}><img src={require('../Images/ita.png')} alt="ita"/></a></li>
-      })
     }
 
     return (

@@ -1,5 +1,4 @@
 import React from 'react';
-import moment from 'moment';
 
 class Countdown extends React.Component {
     state = {
@@ -11,7 +10,7 @@ class Countdown extends React.Component {
 
     componentDidMount() {
         this.interval = setInterval(() => {
-            const { timeTillDate, timeFormat } = this.props;
+            const { timeTillDate } = this.props;
             const total = Date.parse(timeTillDate) - Date.parse(new Date());
             const seconds = Math.floor( (total/1000) % 60 );
             const minutes = Math.floor( (total/1000/60) % 60 );
