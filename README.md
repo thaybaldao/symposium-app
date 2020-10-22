@@ -12,6 +12,7 @@ npm i
 npm run build
 npm start
 ```
+###### Aplicação será executada no *http://localhost:3006/#home*
 
 ### 2. Para o back-end
 
@@ -19,6 +20,7 @@ npm start
 ```shell
 node index.js
 ```
+###### *Backend* será executado no *http://localhost:4000/*
 
 ## Organização do Projeto:
 
