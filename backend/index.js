@@ -167,7 +167,6 @@ app.post("/subscribe/listener", async (req, res) => {
 app.post("/subscribe/presenter", async (req, res) => {
   try {
     const body = req.body;
-    console.log(body);
 
     const newPresenterSubscription = await pool.query(
       "INSERT INTO presenter_subscriptions (title, authors, abstract, user_id)\
