@@ -12,7 +12,7 @@ npm i
 npm run build
 npm start
 ```
-###### Aplicação será executada no *http://localhost:3006/#home*
+###### Aplicação será executada no *http://localhost:3006/*
 
 ### 2. Para o back-end
 
