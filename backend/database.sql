@@ -1,6 +1,7 @@
 DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS listener_subscriptions CASCADE;
 DROP TABLE IF EXISTS presenter_subscriptions CASCADE;
+DROP TABLE IF EXISTS contact_messages CASCADE;
 
 CREATE TABLE users(
    user_id SERIAL,
