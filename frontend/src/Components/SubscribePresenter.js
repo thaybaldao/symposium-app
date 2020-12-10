@@ -6,20 +6,10 @@ import Select from "react-validation/build/select";
 import AuthService from "../Services/AuthService.js";
 import validator from "validator";
 
-const email = (value) => {
-  if (!validator.isEmail(value)) {
-    return (
-      <div className="alert alert-warning" role="alert">
-        {`${value} não é um email válido.`}
-      </div>
-    );
-  }
-};
-
 const number = (value) => {
   if (!validator.isNumeric(value)) {
     return (
-      <div className="alert alert-warning" role="alert">
+      <div className="alert alert-warning" role="alert" style={{maxWidth:"95%"}}>
         {`${value} não é uma sequência de números.`}
       </div>
     );
@@ -61,6 +51,8 @@ class SubscribePresenter extends Component {
       //var body = Object.assign({}, this.state, id);
 
       //console.log(body);
+
+      if (validator.isNumeric(this.state.rg)){
       const response = await fetch("http://localhost:4000/subscribe/presenter", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -70,6 +62,7 @@ class SubscribePresenter extends Component {
       AuthService.setIsSubscribed();
 
       window.location = "/";
+    }
     } catch (err) {
       console.error(err.message);
     }

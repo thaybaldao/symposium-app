@@ -7,7 +7,7 @@ import validator from "validator";
 const email = (value) => {
   if (!validator.isEmail(value)) {
     return (
-      <div className="alert alert-warning" role="alert">
+      <div className="alert alert-warning" role="alert" style={{maxWidth:"95%"}}>
         {`${value} não é um email válido.`}
       </div>
     );
@@ -41,13 +41,17 @@ class Register extends Component {
     try {
       const body = this.state;
 
-      const response = await fetch("http://localhost:4000/register", {
+      if ((this.state.email && validator.isEmail(this.state.email)) && this.state.password) {
+        const response = await fetch("http://localhost:4000/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body)
       });
 
       window.location = "/";
+      }
+
+      
     } catch (err) {
       console.error(err.message);
     }

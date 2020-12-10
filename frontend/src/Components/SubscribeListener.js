@@ -5,16 +5,6 @@ import Select from "react-validation/build/select";
 import AuthService from "../Services/AuthService.js";
 import validator from "validator";
 
-const email = (value) => {
-  if (!validator.isEmail(value)) {
-    return (
-      <div className="alert alert-warning" role="alert">
-        {`${value} não é um email válido.`}
-      </div>
-    );
-  }
-};
-
 const number = (value) => {
   if (!validator.isNumeric(value)) {
     return (
@@ -56,15 +46,20 @@ class SubscribeListener extends Component {
       body.user_id = AuthService.getCurrentUser().user_id;
       //var body = {user_id: AuthService.getCurrentUser().user_id, this.state};
 
-      const response = await fetch("http://localhost:4000/subscribe/listener", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body)
-      });
 
-      AuthService.setIsSubscribed();
+      if (validator.isNumeric(this.state.rg)){
+          const response = await fetch("http://localhost:4000/subscribe/listener", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body)
+        });
 
-      window.location = "/";
+        AuthService.setIsSubscribed();
+
+        window.location = "/";
+      }
+
+      
     } catch (err) {
       console.error(err.message);
     }

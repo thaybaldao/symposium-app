@@ -10,11 +10,12 @@ class AuthService {
         password: password
       })
       .then(response => {
+        if (response.data.user) {
         //if (response.data.token) {
           localStorage.setItem("user", JSON.stringify(response.data.user));
           //localStorage.setItem("token", JSON.stringify(response.data.token));
           localStorage.setItem("subscribed", JSON.stringify(response.data.subscribed));
-        //}
+        }
         return response.data;
       });
   }
