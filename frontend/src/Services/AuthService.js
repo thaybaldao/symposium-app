@@ -10,19 +10,20 @@ class AuthService {
         password: password
       })
       .then(response => {
-        if (response.data.token) {
+        //if (response.data.token) {
           localStorage.setItem("user", JSON.stringify(response.data.user));
-          localStorage.setItem("token", JSON.stringify(response.data.token));
+          //localStorage.setItem("token", JSON.stringify(response.data.token));
           localStorage.setItem("subscribed", JSON.stringify(response.data.subscribed));
-        }
+        //}
         return response.data;
       });
   }
 
   logout() {
     localStorage.removeItem("user");
-    localStorage.removeItem("token");
+    //localStorage.removeItem("token");
     localStorage.removeItem("subscribed");
+    fetch("http://localhost:4000/logout");
   }
 
   getCurrentUser() {
@@ -34,9 +35,9 @@ class AuthService {
     }
   }
 
-  getToken() {
-    return localStorage.getItem("token") || null;
-  }
+  // getToken() {
+  //   return localStorage.getItem("token") || null;
+  // }
 
   getIsSubscribed() {
     if(localStorage.getItem("subscribed") === null || localStorage.getItem("subscribed") === "false"){

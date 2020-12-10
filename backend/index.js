@@ -7,6 +7,9 @@ const jwt = require('jsonwebtoken');
 const utils = require('./utils');
 const pool = require("./db");
 const helmet = require("helmet");
+const passport = require('passport');
+const session = require('express-session');
+const bcrypt = require('bcryptjs');
 
 const app = express();
 const port = process.env.PORT || 4000;
@@ -19,6 +22,16 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 // adding xss protection
 app.use(helmet.xssFilter());
+
+// adding login authentication
+require('./auth')(passport);
+app.use(session({
+  secret: '123',
+  resave: false,
+  saveUninitialized: false
+}))
+app.use(passport.initialize());
+app.use(passport.session());
 
 //middleware that checks if JWT token exists and verifies it if it does exist.
 //In all future routes, this helps to know if the request is authenticated or not.
@@ -65,7 +78,7 @@ app.post('/login', async (req, res) => {
     }
 
     //return 401 status if the credential is not match.
-    if (email !== curr.rows[0].email || pwd !== curr.rows[0].password) {
+    if (email !== curr.rows[0].email || !bcrypt.compareSync(pwd, curr.rows[0].password)) {
       return res.status(401).json({
         error: true,
         message: "Email ou senha estão incorretos."
@@ -73,7 +86,7 @@ app.post('/login', async (req, res) => {
     }
 
     // generate token
-    const token = utils.generateToken(curr.rows[0]);
+    //const token = utils.generateToken(curr.rows[0]);
     // get basic user details
     const userObj = utils.getCleanUser(curr.rows[0]);
 
@@ -81,13 +94,21 @@ app.post('/login', async (req, res) => {
     const subscribedAsPresenter = await pool.query("SELECT * FROM presenter_subscriptions WHERE user_id = $1", [userObj.user_id]);
     const subscribed = (subscribedAsLitener.rows[0] !== undefined) || (subscribedAsPresenter.rows[0] !== undefined);
 
+    passport.authenticate('local')
+    console.log("autenticado")
     // return the token along with user details
-    return res.json({ user: userObj, subscribed: subscribed, token });
+    //return res.json({ user: userObj, subscribed: subscribed, token });
+    return res.json({ user: userObj, subscribed: subscribed });
 
   } catch (err) {
     console.error(err.message);
   }
 });
+
+// authentication route
+// router.post('/auth',
+//     passport.authenticate('local');
+// );
 
 
 // verify the token and return it if it's valid
@@ -127,7 +148,7 @@ app.post("/register", async (req, res) => {
 
     const newUser = await pool.query(
       "INSERT INTO users (email, password)\
-       VALUES ($1, $2);",[body.email, body.password]);
+       VALUES ($1, $2);",[body.email, bcrypt.hashSync(body.password)]);
 
     res.json(newUser.rows[0]);
   } catch (err) {
@@ -194,6 +215,30 @@ app.post("/subscribe/presenter", async (req, res) => {
   } catch (err) {
     console.error(err.message);
   }
+});
+
+// logout route
+app.get('/logout', function(req, res){
+  req.logout();
+  return res.status(200).json({
+    error: false,
+    message: "Logout realizado."
+  });
+});
+
+app.get('/teste', function(req, res){
+  if (req.isAuthenticated()) {
+    console.log("olarrrr");
+  }
+  else {
+    console.log("ainda nao");
+    console.log(req.isAuthenticated());
+  }
+
+  return res.status(200).json({
+    error: false,
+    message: "Logout realizado."
+  });
 });
 
 app.listen(port, () => {
