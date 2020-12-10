@@ -150,6 +150,15 @@ app.post("/register", async (req, res) => {
   try {
     const body = req.body;
 
+    const curr = await pool.query("SELECT * FROM users WHERE email = $1", [body.email]);
+    // found in db
+    if (curr.rows[0]) {
+      return res.status(401).json({
+        error: true,
+        message: "Este email já está registrado."
+      });
+    }
+
     const newUser = await pool.query(
       "INSERT INTO users (email, password)\
        VALUES ($1, $2);",[body.email, bcrypt.hashSync(body.password)]);
@@ -180,11 +189,22 @@ app.post("/subscribe/listener", async (req, res) => {
   try {
     const body = req.body;
 
+    const curr = await pool.query("SELECT * FROM users WHERE cpf = $1", [body.cpf]);
+    // found in db
+    if (curr.rows[0]) {
+      return res.status(401).json({
+        error: true,
+        message: "Este CPF já está registrado."
+      });
+    }
+
     const newListenerSubscription = await pool.query(
       "INSERT INTO listener_subscriptions (user_id)\
        VALUES ($1);",[body.user_id]);
 
     //res.json(newListenerSubscription.rows[0]);
+
+    
 
     const newUserSubscription = await pool.query(
       "UPDATE users SET name = ($1), rg = ($2), cpf = ($3), tel = ($4), birth_date = ($5),\
@@ -202,6 +222,16 @@ app.post("/subscribe/listener", async (req, res) => {
 app.post("/subscribe/presenter", async (req, res) => {
   try {
     const body = req.body;
+
+
+    const curr = await pool.query("SELECT * FROM users WHERE cpf = $1", [body.cpf]);
+    // found in db
+    if (curr.rows[0]) {
+      return res.status(401).json({
+        error: true,
+        message: "Este CPF já está registrado."
+      });
+    }
 
     const newPresenterSubscription = await pool.query(
       "INSERT INTO presenter_subscriptions (title, authors, abstract, user_id)\
