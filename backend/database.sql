@@ -46,5 +46,5 @@ CREATE TABLE presenter_subscriptions(
 ALTER TABLE presenter_subscriptions ADD FOREIGN KEY (user_id) REFERENCES users(user_id);
 
 insert into users values
-(default,'user1','1@gmail.com','1234','11111','11111','66666666','01/01/2000','basica','estudante','ITA'),
-(default,'user2','2@gmail.com','1234','22222','22222','66666666','01/01/2000','basica','estudante','ITA');
+(default,'user1','1@gmail.com','$2a$06$HT.EmXYUUhNo3UQMl9APmeC0SwoGsx7FtMoAWdzGicZJ4wR1J8alW','11111','11111','66666666','01/01/2000','basica','estudante','ITA'),
+(default,'user2','2@gmail.com','$2a$06$HT.EmXYUUhNo3UQMl9APmeC0SwoGsx7FtMoAWdzGicZJ4wR1J8alW','22222','22222','66666666','01/01/2000','basica','estudante','ITA');

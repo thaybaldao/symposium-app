@@ -55,7 +55,7 @@ app.use(function (req, res, next) {
 });
 
 // validate the user credentials
-app.post('/login', async (req, res) => {
+app.post('/login', async (req, res, next) => {
   const email = req.body.email;
   const pwd = req.body.password;
 
@@ -85,8 +85,6 @@ app.post('/login', async (req, res) => {
       });
     }
 
-    // generate token
-    //const token = utils.generateToken(curr.rows[0]);
     // get basic user details
     const userObj = utils.getCleanUser(curr.rows[0]);
 
@@ -94,22 +92,28 @@ app.post('/login', async (req, res) => {
     const subscribedAsPresenter = await pool.query("SELECT * FROM presenter_subscriptions WHERE user_id = $1", [userObj.user_id]);
     const subscribed = (subscribedAsLitener.rows[0] !== undefined) || (subscribedAsPresenter.rows[0] !== undefined);
 
-    passport.authenticate('local')
-    console.log("autenticado")
-    // return the token along with user details
-    //return res.json({ user: userObj, subscribed: subscribed, token });
-    return res.json({ user: userObj, subscribed: subscribed });
+    //passport.authenticate('local')
+    passport.authenticate('local', function(err, user, info) {
+      if (err) { 
+        return next(err);
+      }
+      if (!user) { 
+        return res.status(401).json({
+        error: true,
+        message: "Email não está registrado."
+      }); }
+      req.logIn(user, function(err) {
+        if (err) { 
+          return next(err); }
+        console.log("Usuário autenticado");
+        return res.json({ user: userObj, subscribed: subscribed });
+      });
+    })(req, res, next);
 
   } catch (err) {
     console.error(err.message);
   }
 });
-
-// authentication route
-// router.post('/auth',
-//     passport.authenticate('local');
-// );
-
 
 // verify the token and return it if it's valid
 app.get('/verifyToken', function (req, res) {
@@ -220,21 +224,6 @@ app.post("/subscribe/presenter", async (req, res) => {
 // logout route
 app.get('/logout', function(req, res){
   req.logout();
-  return res.status(200).json({
-    error: false,
-    message: "Logout realizado."
-  });
-});
-
-app.get('/teste', function(req, res){
-  if (req.isAuthenticated()) {
-    console.log("olarrrr");
-  }
-  else {
-    console.log("ainda nao");
-    console.log(req.isAuthenticated());
-  }
-
   return res.status(200).json({
     error: false,
     message: "Logout realizado."
