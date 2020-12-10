@@ -10,6 +10,12 @@ const helmet = require("helmet");
 const passport = require('passport');
 const session = require('express-session');
 const bcrypt = require('bcryptjs');
+const cookieParser = require('cookie-parser')
+const csrf = require('csurf')
+
+// setup route middlewares for csrf
+var csrfProtection = csrf({ cookie: true })
+var parseForm = bodyParser.urlencoded({ extended: false })
 
 const app = express();
 const port = process.env.PORT || 4000;
@@ -22,6 +28,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 // adding xss protection
 app.use(helmet.xssFilter());
+// adding for csrf protection
+app.use(cookieParser())
 
 // adding login authentication
 require('./auth')(passport);
