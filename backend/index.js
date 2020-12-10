@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
 const utils = require('./utils');
 const pool = require("./db");
+const helmet = require("helmet");
 
 const app = express();
 const port = process.env.PORT || 4000;
@@ -16,6 +17,8 @@ app.use(cors());
 app.use(bodyParser.json());
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
+// adding xss protection
+app.use(helmet.xssFilter());
 
 //middleware that checks if JWT token exists and verifies it if it does exist.
 //In all future routes, this helps to know if the request is authenticated or not.
@@ -123,9 +126,8 @@ app.post("/register", async (req, res) => {
     const body = req.body;
 
     const newUser = await pool.query(
-      "INSERT INTO users (name, email, password, rg, cpf, tel, birth_date, education, work, organization)\
-       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10);",[body.name, body.email,
-       body.password, body.rg, body.cpf, body.tel, body.birth, body.nivel, body.job, body.place]);
+      "INSERT INTO users (email, password)\
+       VALUES ($1, $2);",[body.email, body.password]);
 
     res.json(newUser.rows[0]);
   } catch (err) {
@@ -157,7 +159,15 @@ app.post("/subscribe/listener", async (req, res) => {
       "INSERT INTO listener_subscriptions (user_id)\
        VALUES ($1);",[body.user_id]);
 
-    res.json(newListenerSubscription.rows[0]);
+    //res.json(newListenerSubscription.rows[0]);
+
+    const newUserSubscription = await pool.query(
+      "UPDATE users SET name = ($1), rg = ($2), cpf = ($3), tel = ($4), birth_date = ($5),\
+       education = ($6), work = ($7), organization = ($8)\
+       WHERE user_id = ($9);",[body.name, body.rg, body.cpf, body.tel, body.birth,
+      body.nivel, body.job, body.place, body.user_id]);
+
+    res.json(newUserSubscription.rows[0]);
   } catch (err) {
     console.error(err.message);
   }
@@ -172,7 +182,15 @@ app.post("/subscribe/presenter", async (req, res) => {
       "INSERT INTO presenter_subscriptions (title, authors, abstract, user_id)\
        VALUES ($1, $2, $3, $4);",[body.title, body.authors, body.abstract, body.user_id]);
 
-    res.json(newPresenterSubscription.rows[0]);
+    //res.json(newPresenterSubscription.rows[0]);
+
+    const newUserSubscription = await pool.query(
+      "UPDATE users SET name = ($1), rg = ($2), cpf = ($3), tel = ($4), birth_date = ($5),\
+       education = ($6), work = ($7), organization = ($8)\
+       WHERE user_id = ($9);",[body.name, body.rg, body.cpf, body.tel, body.birth,
+      body.nivel, body.job, body.place, body.user_id]);
+
+    res.json(newUserSubscription.rows[0]);
   } catch (err) {
     console.error(err.message);
   }

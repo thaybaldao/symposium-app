@@ -5,16 +5,16 @@ DROP TABLE IF EXISTS contact_messages CASCADE;
 
 CREATE TABLE users(
    user_id SERIAL,
-   name VARCHAR(100) NOT NULL,
+   name VARCHAR(100),
    email VARCHAR(100) UNIQUE NOT NULL,
-   password VARCHAR NOT NULL,
-   rg VARCHAR(20) NOT NULL,
-   cpf VARCHAR(14) UNIQUE NOT NULL,
-   tel VARCHAR(20) NOT NULL,
-   birth_date DATE NOT NULL,
-   education VARCHAR(100) NOT NULL,
-   work VARCHAR(100) NOT NULL,
-   organization VARCHAR(100) NOT NULL,
+   password VARCHAR,
+   rg VARCHAR(20),
+   cpf VARCHAR(14) UNIQUE,
+   tel VARCHAR(20),
+   birth_date DATE,
+   education VARCHAR(100),
+   work VARCHAR(100),
+   organization VARCHAR(100),
    PRIMARY KEY(user_id)
 );
 
