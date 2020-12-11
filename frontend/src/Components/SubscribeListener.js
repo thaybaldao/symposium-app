@@ -29,9 +29,20 @@ const required = value => {
 class SubscribeListener extends Component {
   constructor(props) {
       super(props);
+
       this.state = { name: '', rg: '', cpf: '', tel: '',
-                     birth: '', nivel: '', job: '', place: '', message: ''};
+                     birth: '', nivel: '', job: '', place: '', message: ''};//, token: response.csrfToken};
   }
+
+  async componentDidMount(){
+    var response = await fetch("http://localhost:4000/sendToken", {
+        credentials: 'same-origin',
+        method: "GET"
+    });
+    var auxiliar = await response.json()
+    this.setState({token: auxiliar.csrfToken})
+  }
+
   myChangeHandler = (event) => {
     let nam = event.target.name;
     let val = event.target.value;
@@ -51,7 +62,8 @@ class SubscribeListener extends Component {
       if (validator.isNumeric(this.state.rg)){
           const response = await fetch("http://localhost:4000/subscribe/listener", {
           method: "POST",
-          headers: { "Content-Type": "application/json", 'CSRF-Token': token },
+          credentials: 'same-origin',
+          headers: { "Content-Type": "application/json", 'XSRF-TOKEN': this.state.token },
           body: JSON.stringify(body)
         });
 
@@ -62,15 +74,15 @@ class SubscribeListener extends Component {
               message: res.message,
             });
           }
-          
+
         } catch (error) {
           AuthService.setIsSubscribed();
 
           window.location = "/";
-          
+
         }
 
-        
+
       }
 
 
@@ -83,9 +95,8 @@ class SubscribeListener extends Component {
     return (
       <section id="inscricao">
         <div>
-        <meta name="csrf-token" content=""/>
-        <input type="hidden" name="_csrf" value=""/>
            <div className="inside-modal">
+              <meta name="csrf-token" content={this.state.token}/>
               <Form onSubmit={this.mySubmitHandler} ref={c => { this.form = c; }}>
               <p class="modal-field">Nome Completo:</p>
               <Input type="text" className="form-control" name='name' value={this.state.name} onChange={this.myChangeHandler} validations={[required]}/>

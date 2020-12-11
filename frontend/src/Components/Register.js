@@ -35,16 +35,28 @@ class Register extends Component {
     this.setState({[nam]: val});
   }
 
+  async componentDidMount(){
+    var response = await fetch("http://localhost:4000/sendToken", {
+        credentials: 'same-origin',
+        method: "GET"
+    });
+    var auxiliar = await response.json()
+    this.setState({token: auxiliar.csrfToken})
+  }
+
   mySubmitHandler = async e => {
     this.form.validateAll();
     e.preventDefault();
     try {
       const body = this.state;
 
+      var token = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+
       if ((this.state.email && validator.isEmail(this.state.email)) && this.state.password) {
         const response = await fetch("http://localhost:4000/register", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        credentials: 'same-origin',
+        headers: { "Content-Type": "application/json", 'XSRF-TOKEN': this.state.token },
         body: JSON.stringify(body)
       });
 
@@ -55,15 +67,15 @@ class Register extends Component {
             message: res.message,
           });
         }
-        
+
       } catch (error) {
         window.location = "/";
-        
-      }
-      
+
       }
 
-      
+      }
+
+
     } catch (err) {
       console.error(err.message);
     }
@@ -74,7 +86,7 @@ class Register extends Component {
       <section id="inscricao">
         <div>
            <div className="inside-modal">
-
+              <meta name="csrf-token" content={this.state.token}/>
               <Form onSubmit={this.mySubmitHandler} ref={c => { this.form = c; }}>
 
                 <p class="modal-field">E-mail:</p>

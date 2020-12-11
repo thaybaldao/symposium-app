@@ -30,6 +30,23 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(helmet.xssFilter());
 // adding for csrf protection
 app.use(cookieParser())
+// additional clickjacking protection
+app.use(
+  helmet.frameguard({
+    action: "deny",
+  })
+);
+// additional security policies (default configuration)
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'", "example.com"],
+      objectSrc: ["'none'"],
+      upgradeInsecureRequests: [],
+    },
+  })
+);
 
 // adding login authentication
 require('./auth')(passport);
@@ -40,6 +57,11 @@ app.use(session({
 }))
 app.use(passport.initialize());
 app.use(passport.session());
+
+// csrf test
+// app.all('*', csrfProtection, function (req, res) {
+//   res.cookie('XSRF-TOKEN', req.csrfToken())
+// })
 
 //middleware that checks if JWT token exists and verifies it if it does exist.
 //In all future routes, this helps to know if the request is authenticated or not.
@@ -192,8 +214,12 @@ app.post("/contact", async (req, res) => {
   }
 });
 
+app.get("/sendToken", csrfProtection, function (req, res) {
+  return res.json({ csrfToken: req.csrfToken() });
+});
+
 // subscribe listener
-app.post("/subscribe/listener", parseForm, csrfProtection, async (req, res) => {
+app.post("/subscribe/listener", async (req, res) => {
   try {
     const body = req.body;
 
@@ -212,8 +238,6 @@ app.post("/subscribe/listener", parseForm, csrfProtection, async (req, res) => {
 
     //res.json(newListenerSubscription.rows[0]);
 
-    
-
     const newUserSubscription = await pool.query(
       "UPDATE users SET name = ($1), rg = ($2), cpf = ($3), tel = ($4), birth_date = ($5),\
        education = ($6), work = ($7), organization = ($8)\
@@ -221,7 +245,6 @@ app.post("/subscribe/listener", parseForm, csrfProtection, async (req, res) => {
       body.nivel, body.job, body.place, body.user_id]);
 
     res.json(newUserSubscription.rows[0]);
-    //res.render('send', { csrfToken: req.csrfToken() })
   } catch (err) {
     console.error(err.message);
   }

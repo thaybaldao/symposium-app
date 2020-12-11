@@ -19,12 +19,12 @@ const Pool = require("pg").Pool;
 });*/
 
 // Bruno
-const pool = new Pool({
+/*const pool = new Pool({
   user: "postgres",
   password: "231234",
   host: "localhost",
   port: 5432,
   database: "symposium"
-});
+});*/
 
 module.exports = pool;

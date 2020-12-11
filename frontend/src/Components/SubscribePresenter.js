@@ -35,6 +35,15 @@ class SubscribePresenter extends Component {
                     birth: '', nivel: '', job: '', place: '', message: ''};
   }
 
+  async componentDidMount(){
+    var response = await fetch("http://localhost:4000/sendToken", {
+        credentials: 'same-origin',
+        method: "GET"
+    });
+    var auxiliar = await response.json()
+    this.setState({token: auxiliar.csrfToken})
+  }
+
   myChangeHandler = (event) => {
     let nam = event.target.name;
     let val = event.target.value;
@@ -51,11 +60,13 @@ class SubscribePresenter extends Component {
       //var body = Object.assign({}, this.state, id);
 
       //console.log(body);
+      var token = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
 
       if (validator.isNumeric(this.state.rg)){
       const response = await fetch("http://localhost:4000/subscribe/presenter", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        credentials: 'same-origin',
+        headers: { "Content-Type": "application/json", 'XSRF-TOKEN': this.state.token  },
         body: JSON.stringify(body)
       });
 
@@ -66,12 +77,12 @@ class SubscribePresenter extends Component {
             message: res.message,
           });
         }
-        
+
       } catch (error) {
         AuthService.setIsSubscribed();
 
         window.location = "/";
-        
+
       }
     }
     } catch (err) {
@@ -84,6 +95,7 @@ class SubscribePresenter extends Component {
       <section id="inscricao">
         <div>
            <div className="inside-modal">
+              <meta name="csrf-token" content={this.state.token}/>
               <Form onSubmit={this.mySubmitHandler} ref={c => { this.form = c; }}>
                 <p class="modal-field">Nome Completo:</p>
                 <Input type="text" className="form-control" name='name' value={this.state.name} onChange={this.myChangeHandler} validations={[required]}/>

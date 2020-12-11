@@ -28,6 +28,16 @@ class Contact extends Component {
       super(props);
       this.state = { name: '', email: '', message: ''};
   }
+
+  async componentDidMount(){
+    var response = await fetch("http://localhost:4000/sendToken", {
+        credentials: 'same-origin',
+        method: "GET"
+    });
+    var auxiliar = await response.json()
+    this.setState({token: auxiliar.csrfToken})
+  }
+
   myChangeHandler = (event) => {
     let nam = event.target.name;
     let val = event.target.value;
@@ -41,9 +51,12 @@ class Contact extends Component {
     try {
       const body = this.state;
 
+      var token = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+
       const response = await fetch("http://localhost:4000/contact", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        credentials: 'same-origin',
+        headers: { "Content-Type": "application/json", 'XSRF-TOKEN': this.state.token   },
         body: JSON.stringify(body)
       });
 
@@ -63,6 +76,7 @@ class Contact extends Component {
           <p>Tem alguma dúvida? Envie-nos uma mensagem!</p>
         </div>
        <div className="centered-form">
+          <meta name="csrf-token" content={this.state.token}/>
           <Form onSubmit={this.mySubmitHandler} ref={c => { this.form = c; }}>
             <p class="modal-field">Nome Completo:</p>
             <Input type="text" className="form-control" name='name' value={this.state.name} onChange={this.myChangeHandler} validations={[required]}/>
