@@ -32,7 +32,7 @@ class SubscribePresenter extends Component {
       super(props);
       this.state = { title: '', authors: '', abstract: '', user_id: AuthService.getCurrentUser().id,
                     name: '', rg: '', cpf: '', tel: '',
-                    birth: '', nivel: '', job: '', place: ''};
+                    birth: '', nivel: '', job: '', place: '', message: ''};
   }
 
   myChangeHandler = (event) => {
@@ -59,9 +59,20 @@ class SubscribePresenter extends Component {
         body: JSON.stringify(body)
       });
 
-      AuthService.setIsSubscribed();
+      try {
+        var res = await response.json();
+        if (res.error) {
+          this.setState({
+            message: res.message,
+          });
+        }
+        
+      } catch (error) {
+        AuthService.setIsSubscribed();
 
-      window.location = "/";
+        window.location = "/";
+        
+      }
     }
     } catch (err) {
       console.error(err.message);
@@ -113,6 +124,14 @@ class SubscribePresenter extends Component {
                 <textarea type="text" className="form-control" name='abstract' value={this.state.abstract} onChange={this.myChangeHandler} validations={[required]}/>
 
                 <Input type='submit' className="form-control" className="button btn register-btn" value='INSCREVER'/>
+
+                {this.state.message && (
+              <div className="form-group">
+                <div className="alert alert-danger" role="alert" style={{maxWidth:"95%"}}>
+                  {this.state.message}
+                </div>
+              </div>
+            )}
               </Form>
            </div>
         </div>

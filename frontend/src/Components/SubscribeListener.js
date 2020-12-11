@@ -8,7 +8,7 @@ import validator from "validator";
 const number = (value) => {
   if (!validator.isNumeric(value)) {
     return (
-      <div className="alert alert-warning" role="alert">
+      <div className="alert alert-warning" role="alert" style={{maxWidth:"95%"}}>
         {`${value} não é uma sequência de números.`}
       </div>
     );
@@ -30,7 +30,7 @@ class SubscribeListener extends Component {
   constructor(props) {
       super(props);
       this.state = { name: '', rg: '', cpf: '', tel: '',
-                     birth: '', nivel: '', job: '', place: ''};
+                     birth: '', nivel: '', job: '', place: '', message: ''};
   }
   myChangeHandler = (event) => {
     let nam = event.target.name;
@@ -55,9 +55,22 @@ class SubscribeListener extends Component {
           body: JSON.stringify(body)
         });
 
-        AuthService.setIsSubscribed();
+        try {
+          var res = await response.json();
+          if (res.error) {
+            this.setState({
+              message: res.message,
+            });
+          }
+          
+        } catch (error) {
+          AuthService.setIsSubscribed();
 
-        window.location = "/";
+          window.location = "/";
+          
+        }
+
+        
       }
 
 
@@ -104,6 +117,14 @@ class SubscribeListener extends Component {
               <Input type="text" className="form-control" name='place' value={this.state.place} onChange={this.myChangeHandler} validations={[required]}/>
 
               <Input type='submit' className="button btn register-btn" value='INSCREVER'/>
+
+              {this.state.message && (
+              <div className="form-group">
+                <div className="alert alert-danger" role="alert" style={{maxWidth:"95%"}}>
+                  {this.state.message}
+                </div>
+              </div>
+            )}
             </Form>
            </div>
         </div>

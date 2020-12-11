@@ -27,7 +27,7 @@ const required = value => {
 class Register extends Component {
   constructor(props) {
       super(props);
-      this.state = { email: '', password:''};
+      this.state = { email: '', password:'', message: ''};
   }
   myChangeHandler = (event) => {
     let nam = event.target.name;
@@ -48,7 +48,19 @@ class Register extends Component {
         body: JSON.stringify(body)
       });
 
-      window.location = "/";
+      try {
+        var res = await response.json();
+        if (res.error) {
+          this.setState({
+            message: res.message,
+          });
+        }
+        
+      } catch (error) {
+        window.location = "/";
+        
+      }
+      
       }
 
       
@@ -72,6 +84,14 @@ class Register extends Component {
                 <Input type="password" className="form-control" name='password' value={this.state.password} onChange={this.myChangeHandler} validations={[required]}/>
 
                 <Input type='submit' className="button btn register-btn" value='CADASTRAR'/>
+
+                {this.state.message && (
+                <div className="form-group">
+                  <div className="alert alert-danger" role="alert" style={{maxWidth:"95%"}}>
+                    {this.state.message}
+                  </div>
+                </div>
+              )}
               </Form>
            </div>
         </div>
