@@ -44,6 +44,8 @@ class RegisterModal extends Component {
 
             <button type="button" className="button btn register-btn" data-toggle="modal" data-target="#loginModal">LOGIN</button>
 
+            <button type="button" className="button btn register-btn" >GOOGLE LOGIN</button>
+
             <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-hidden="true">
               <div class="modal-dialog" role="document">
                 <div class="newmodal">

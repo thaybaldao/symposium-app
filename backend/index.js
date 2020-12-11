@@ -53,7 +53,7 @@ require('./auth')(passport);
 app.use(session({
   secret: '123',
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: false // maybe will change
 }))
 app.use(passport.initialize());
 app.use(passport.session());
@@ -282,6 +282,31 @@ app.post("/subscribe/presenter", async (req, res) => {
     console.error(err.message);
   }
 });
+
+// Google Login
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+
+passport.use(new GoogleStrategy({
+    clientID: "315865208536-va4ec2v0kum28lh054g8ujnr9va645rd.apps.googleusercontent.com",
+    clientSecret: "wZifEU12QaN6mU1tmMT9oJEH",
+    callbackURL: "/auth/google/callback"
+  },
+  function(accessToken, refreshToken, profile, done) {
+    // User.findOrCreate({ googleId: profile.id }, function (err, user) {
+    //      return done(err, user);
+    //    });
+  }
+));
+
+app.get('/auth/google',
+  passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login'] }));
+
+  app.get('/auth/google/callback',
+    passport.authenticate('google', { failureRedirect: '/login' }),
+    function(req, res) {
+      console.log("logged in");
+      res.redirect('/');
+    });
 
 // logout route
 app.get('/logout', function(req, res){
