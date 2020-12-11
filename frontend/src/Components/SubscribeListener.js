@@ -31,7 +31,7 @@ class SubscribeListener extends Component {
       super(props);
 
       this.state = { name: '', rg: '', cpf: '', tel: '',
-                     birth: '', nivel: '', job: '', place: '', message: ''};//, token: response.csrfToken};
+                     birth: '', nivel: '', job: '', place: '', message: ''};
   }
 
   async componentDidMount(){
@@ -55,7 +55,6 @@ class SubscribeListener extends Component {
     try {
       const body = this.state;
       body.user_id = AuthService.getCurrentUser().user_id;
-      //var body = {user_id: AuthService.getCurrentUser().user_id, this.state};
 
       var token = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
 

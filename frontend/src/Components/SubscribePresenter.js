@@ -56,17 +56,13 @@ class SubscribePresenter extends Component {
     try {
       const body = this.state;
       body.user_id = AuthService.getCurrentUser().user_id;
-      //var id = {user_id: AuthService.getCurrentUser().user_id};
-      //var body = Object.assign({}, this.state, id);
-
-      //console.log(body);
       var token = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
 
       if (validator.isNumeric(this.state.rg)){
       const response = await fetch("http://localhost:4000/subscribe/presenter", {
         method: "POST",
         credentials: 'same-origin',
-        headers: { "Content-Type": "application/json", 'XSRF-TOKEN': this.state.token  },
+        headers: { "Content-Type": "application/json", 'XSRF-TOKEN': this.state.token },
         body: JSON.stringify(body)
       });
 

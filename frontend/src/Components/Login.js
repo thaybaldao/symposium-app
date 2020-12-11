@@ -43,6 +43,15 @@ class Login extends Component {
     };
   }
 
+  async componentDidMount(){
+    var response = await fetch("http://localhost:4000/sendToken", {
+        credentials: 'same-origin',
+        method: "GET"
+    });
+    var auxiliar = await response.json()
+    this.setState({token: auxiliar.csrfToken})
+  }
+
   onChangeEmail(e) {
     this.setState({
       email: e.target.value
@@ -103,6 +112,7 @@ class Login extends Component {
               this.form = c;
             }}
           >
+              <meta name="csrf-token" content={this.state.token}/>
 
               <label class="modal-field" htmlFor="email">E-mail:</label>
               <Input

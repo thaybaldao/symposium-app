@@ -6,7 +6,7 @@ import validator from "validator";
 const email = (value) => {
   if (!validator.isEmail(value)) {
     return (
-      <div className="alert alert-warning" role="alert">
+      <div className="alert alert-warning" role="alert" style={{maxWidth:"95%"}}>
         {`${value} não é um email válido.`}
       </div>
     );
@@ -26,7 +26,7 @@ const required = value => {
 class Contact extends Component {
   constructor(props) {
       super(props);
-      this.state = { name: '', email: '', message: ''};
+      this.state = { name: '', email: '', message: '', errMessage: ''};
   }
 
   async componentDidMount(){
@@ -53,14 +53,31 @@ class Contact extends Component {
 
       var token = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
 
+      if (validator.isEmail(this.state.email)){
+
       const response = await fetch("http://localhost:4000/contact", {
         method: "POST",
         credentials: 'same-origin',
-        headers: { "Content-Type": "application/json", 'XSRF-TOKEN': this.state.token   },
+        headers: { "Content-Type": "application/json", 'XSRF-TOKEN': this.state.token },
         body: JSON.stringify(body)
       });
 
-      window.location.reload(false);
+      try {
+        var res = await response.json();
+        if (res.error) {
+          this.setState({
+            errMessage: res.message,
+          });
+        }
+
+      } catch (error) {
+        window.location.reload(false);
+
+      }
+
+    }
+
+      
     } catch (err) {
       console.error(err.message);
     }
@@ -88,6 +105,13 @@ class Contact extends Component {
             <textarea type="text" className="form-control" name='message' value={this.state.message} onChange={this.myChangeHandler} validations={[required]}/>
 
             <Input type='submit' className="button btn register-btn button-contact" value='ENVIAR'/>
+            {this.state.errMessage && (
+              <div className="form-group">
+                <div className="alert alert-danger" role="alert" style={{maxWidth:"95%"}}>
+                  {this.state.errMessage}
+                </div>
+              </div>
+            )}
           </Form>
        </div>
       </section>
