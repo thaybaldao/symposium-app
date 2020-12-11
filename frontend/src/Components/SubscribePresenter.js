@@ -32,7 +32,7 @@ class SubscribePresenter extends Component {
       super(props);
       this.state = { title: '', authors: '', abstract: '', user_id: AuthService.getCurrentUser().id,
                     name: '', rg: '', cpf: '', tel: '',
-                    birth: '', nivel: '', job: '', place: ''};
+                    birth: '', nivel: '', job: '', place: '', message: ''};
   }
 
   myChangeHandler = (event) => {

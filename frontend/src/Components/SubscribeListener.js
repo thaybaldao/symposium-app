@@ -8,7 +8,7 @@ import validator from "validator";
 const number = (value) => {
   if (!validator.isNumeric(value)) {
     return (
-      <div className="alert alert-warning" role="alert">
+      <div className="alert alert-warning" role="alert" style={{maxWidth:"95%"}}>
         {`${value} não é uma sequência de números.`}
       </div>
     );
