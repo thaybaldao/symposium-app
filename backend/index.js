@@ -102,16 +102,16 @@ app.post('/login', async (req, res, next) => {
 
     //passport.authenticate('local')
     passport.authenticate('local', function(err, user, info) {
-      if (err) { 
+      if (err) {
         return next(err);
       }
-      if (!user) { 
+      if (!user) {
         return res.status(401).json({
         error: true,
         message: "Email não está registrado."
       }); }
       req.logIn(user, function(err) {
-        if (err) { 
+        if (err) {
           return next(err); }
         console.log("Usuário autenticado");
         return res.json({ user: userObj, subscribed: subscribed });
@@ -184,7 +184,7 @@ app.post("/contact", async (req, res) => {
 });
 
 // subscribe listener
-app.post("/subscribe/listener", async (req, res) => {
+app.post("/subscribe/listener", parseForm, csrfProtection, async (req, res) => {
   try {
     const body = req.body;
 
@@ -201,6 +201,7 @@ app.post("/subscribe/listener", async (req, res) => {
       body.nivel, body.job, body.place, body.user_id]);
 
     res.json(newUserSubscription.rows[0]);
+    //res.render('send', { csrfToken: req.csrfToken() })
   } catch (err) {
     console.error(err.message);
   }

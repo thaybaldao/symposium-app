@@ -46,11 +46,12 @@ class SubscribeListener extends Component {
       body.user_id = AuthService.getCurrentUser().user_id;
       //var body = {user_id: AuthService.getCurrentUser().user_id, this.state};
 
+      var token = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
 
       if (validator.isNumeric(this.state.rg)){
           const response = await fetch("http://localhost:4000/subscribe/listener", {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: { "Content-Type": "application/json", 'CSRF-Token': token },
           body: JSON.stringify(body)
         });
 
@@ -59,7 +60,7 @@ class SubscribeListener extends Component {
         window.location = "/";
       }
 
-      
+
     } catch (err) {
       console.error(err.message);
     }
@@ -69,6 +70,8 @@ class SubscribeListener extends Component {
     return (
       <section id="inscricao">
         <div>
+        <meta name="csrf-token" content=""/>
+        <input type="hidden" name="_csrf" value=""/>
            <div className="inside-modal">
               <Form onSubmit={this.mySubmitHandler} ref={c => { this.form = c; }}>
               <p class="modal-field">Nome Completo:</p>
