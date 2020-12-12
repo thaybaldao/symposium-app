@@ -13,7 +13,7 @@ No contexto de Single Page Application e seguindo o planejamento que vem sendo e
 
 **"Como visitante do site, eu quero ...**
 
- * obter informações gerais do projeto para decidir sobre minha participação"
+ * obter informações gerais do evento para decidir sobre minha participação"
  * obter uma prévia da programação para melhor escolha de palestras"
  * realizar um cadastro simples no site para me inscrever"
  * poder facilmente me inscrever como ouvinte do simpósio para assistir as palestras"
@@ -48,7 +48,7 @@ npm start
 npm i
 node index.js
 ```
-###### *Backend* deverá ser executado *http://localhost:4000/*
+###### *Backend* deverá ser executado em *http://localhost:4000/*
 
 ### Versão Mobile
 ###### Acesse o diretório *./mobile-app*
@@ -56,7 +56,7 @@ node index.js
 npm i
 expo start
 ```
-###### *Utilizando o aplicativo Expo Client, basta acessar o QRCode gerado*
+###### *Utilizando o aplicativo Expo Client, basta acessar o QRCode gerado com seu smartphone*
 
 ## Organização do Projeto
 
@@ -126,7 +126,7 @@ Exitem, basicamente, três instâncias em que o usuário estará presente: há a
 ## Segurança da Aplicação
 Quase que a totalidade das aplicações está sujeita a ataques maliciosos que exploram vulnerabilidades. No caso de aplicações web o problema se torna mais crítico pela própria condição de conexão à Internet que cria espaço para abertura dos acessos.
 
-No contexto do projeto foram implementadas táticas de mitigação para algumas vulnerabilidades como: cross-site scripting (XSS), cross-site request forgery (CSRF), clickjacking, SQL injection. A base da implementação das estratégias em questão foram baseadas em middlewares como o Helmet e o csurf. Observemos um adescrição básica:
+No contexto do projeto foram implementadas táticas de mitigação para algumas vulnerabilidades como: cross-site scripting (XSS), cross-site request forgery (CSRF), clickjacking, SQL injection. A base da implementação das estratégias em questão foram baseadas em frameworks como o Helmet e o csurf. Observemos um adescrição básica:
 
 * XSS: aplicação de um filtro do Helmet para ajuste do comportamento do browser
 * CSRF: utilização do csurf para gerar tokens para validação e que são passados para o formulários da aplicação
@@ -136,9 +136,9 @@ No contexto do projeto foram implementadas táticas de mitigação para algumas 
 Além disso, foi aplicada uma estratégia de criptografia em campos sensíveis, como é o caso da senha dos usuários, para a qual toda validação e armazenamento no banco de dados é feita a partir da aplicação de uma função de hash. Pode-se citar que também foi configurada uma política de segurança do Helmet (*contentSecurityPolicy*) para cobrir casos adicionais.
 
 ## Autenticações na Aplicação
-Ainda no contexto de segurança da aplicação é interessante que seja realizada autenticação do usuário logado. Além de conferir maior robustez ao sistema, a autenticação visa proteger rotas restritas e assegura o login de um usuário válido. Utilizando como base o middleware Passport do Node.js foi implementada uma estratégia local de autenticação. Os tratamentos da autenticação e da definição da estratégia local podem ser identificados no arquivo *backend/index.js*.
+Ainda no contexto de segurança da aplicação é interessante que seja realizada autenticação do usuário logado. Além de conferir maior robustez ao sistema, a autenticação visa proteger rotas restritas e assegura o login de um usuário válido. Utilizando como base o framework Passport do Node.js foi implementada uma estratégia local de autenticação. Os tratamentos da autenticação e da definição da estratégia local podem ser identificados no arquivo *backend/index.js*.
 
 Também foi proposta uma autenticação alternativa utilizando um serviço externo. Aplicando o protocolo OAth2.0 foi indicada a possibilidade de o usuário se conectar a partir de sua conta Google. No Google Cloud Platform foi criado um projeto e configurado o serviço de autenticação para que houvesse o suporte desejado à aplicação.
 
 ## Validações na Aplicação
-Foram aplicadas diversas estratégias de validação na aplicação. Conforme pode ser observado no presente projeto, deve haver coerência dos requests da aplicação com a estrutura definida no banco de dados. Os tamanhos reservados para os campos, tipos de dado dos campos e obrigatoriedade do preenchimento devem ser verificados nas queries propostas de interação com o banco de dados relacional. Unicidade das colunas adicionadas também são um fator importante. A grande maioria dessas verificações estão presentes no próprio arquivo de definição das rotas, em *backend/index.js*. Naturalmente, os formulários definidos nos componentes (frontend) também devem estar de acordo com a modelagem adotada.
+Foram aplicadas diversas estratégias de validação na aplicação. Conforme pode ser observado no presente projeto, deve haver coerência dos requests da aplicação com a estrutura definida no banco de dados. Os tipos de dados dos campos e obrigatoriedade do preenchimento devem ser verificados nas queries propostas de interação com o banco de dados relacional. Unicidade das colunas adicionadas também são um fator importante. A grande maioria dessas verificações estão presentes no próprio arquivo de definição das rotas, em *backend/index.js*. Naturalmente, os formulários definidos nos componentes (frontend) também devem estar de acordo com a modelagem adotada.
