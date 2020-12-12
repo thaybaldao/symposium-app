@@ -59,20 +59,14 @@ class Register extends Component {
         headers: { "Content-Type": "application/json", 'XSRF-TOKEN': this.state.token },
         body: JSON.stringify(body)
       });
-
-      try {
         var res = await response.json();
         if (res.error) {
           this.setState({
             message: res.message,
           });
         }
-
-      } catch (error) {
-        window.location = "/";
-
-      }
-
+        else
+          window.location = "/";
       }
 
 

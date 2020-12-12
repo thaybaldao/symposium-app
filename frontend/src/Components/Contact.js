@@ -62,18 +62,14 @@ class Contact extends Component {
         body: JSON.stringify(body)
       });
 
-      try {
-        var res = await response.json();
-        if (res.error) {
-          this.setState({
-            errMessage: res.message,
-          });
-        }
-
-      } catch (error) {
-        window.location.reload(false);
-
+      var res = await response.json();
+      if (res.error) {
+        this.setState({
+          errMessage: res.message,
+        });
       }
+      else
+        window.location.reload(false);
 
     }
 

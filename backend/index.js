@@ -132,6 +132,11 @@ app.post('/login', async (req, res, next) => {
 
   } catch (err) {
     console.error(err.message);
+    // Return status 500 if an error was caught
+    return res.status(500).json({
+      error: true,
+      message: "Erro no banco de dados."
+    });
   }
 });
 
@@ -169,10 +174,19 @@ app.post("/register", async (req, res) => {
     const newUser = await pool.query(
       "INSERT INTO users (email, password)\
        VALUES ($1, $2);",[body.email, bcrypt.hashSync(body.password)]);
-
-    res.json(newUser.rows[0]);
+    
+    // Return status OK
+    return res.status(200).json({
+      error: false,
+      message: "Usuário registrado com sucesso."
+    });
   } catch (err) {
     console.error(err.message);
+    // Return status 500 if an error was caught
+    return res.status(500).json({
+      error: true,
+      message: "Erro no banco de dados."
+    });
   }
 });
 
@@ -200,10 +214,19 @@ app.post("/contact", async (req, res) => {
     const newContact = await pool.query(
       "INSERT INTO contact_messages (name, email, message)\
        VALUES ($1, $2, $3);",[body.name, body.email, body.message]);
-
-    res.json(newContact.rows[0]);
+    
+    // Return status OK
+    return res.status(200).json({
+      error: false,
+      message: "Mensagem enviada com sucesso."
+    });
   } catch (err) {
     console.error(err.message);
+    // Return status 500 if an error was caught
+    return res.status(500).json({
+      error: true,
+      message: "Erro no banco de dados."
+    });
   }
 });
 
@@ -256,10 +279,19 @@ app.post("/subscribe/listener", async (req, res) => {
        education = ($6), work = ($7), organization = ($8)\
        WHERE user_id = ($9);",[body.name, body.rg, body.cpf, body.tel, body.birth,
       body.nivel, body.job, body.place, body.user_id]);
-
-    res.json(newUserSubscription.rows[0]);
+      
+    // Return status OK
+    return res.status(200).json({
+      error: false,
+      message: "Inscrição realizada com sucesso."
+    });
   } catch (err) {
     console.error(err.message);
+    // Return status 500 if an error was caught
+    return res.status(500).json({
+      error: true,
+      message: "Erro no banco de dados."
+    });
   }
 });
 
@@ -304,10 +336,19 @@ app.post("/subscribe/presenter", async (req, res) => {
        education = ($6), work = ($7), organization = ($8)\
        WHERE user_id = ($9);",[body.name, body.rg, body.cpf, body.tel, body.birth,
       body.nivel, body.job, body.place, body.user_id]);
-
-    res.json(newUserSubscription.rows[0]);
+    
+    // Return status OK
+    return res.status(200).json({
+      error: false,
+      message: "Inscrição realizada com sucesso."
+    });
   } catch (err) {
     console.error(err.message);
+    // Return status 500 if an error was caught
+    return res.status(500).json({
+      error: true,
+      message: "Erro no banco de dados."
+    });
   }
 });
 
@@ -338,7 +379,6 @@ passport.use(new GoogleStrategy({
        const curr = await pool.query("SELECT * FROM users WHERE email = $1", [emailAddress]);
 
        const userObj = utils.getCleanUser(curr.rows[0]);
-       console.log("newuser before callback: ", userObj);
        return done(null, userObj);
     }
   }

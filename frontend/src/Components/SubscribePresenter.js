@@ -66,17 +66,15 @@ class SubscribePresenter extends Component {
         body: JSON.stringify(body)
       });
 
-      try {
-        var res = await response.json();
-        if (res.error) {
-          this.setState({
-            message: res.message,
-          });
-        }
+      var res = await response.json();
+      if (res.error) {
+        this.setState({
+          message: res.message,
+        });
+      }
 
-      } catch (error) {
+      else{
         AuthService.setIsSubscribed();
-
         window.location = "/";
 
       }

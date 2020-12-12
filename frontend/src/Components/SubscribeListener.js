@@ -66,22 +66,17 @@ class SubscribeListener extends Component {
           body: JSON.stringify(body)
         });
 
-        try {
-          var res = await response.json();
-          if (res.error) {
-            this.setState({
-              message: res.message,
-            });
-          }
-
-        } catch (error) {
-          AuthService.setIsSubscribed();
-
-          window.location = "/";
-
+        var res = await response.json();
+        if (res.error) {
+          this.setState({
+            message: res.message,
+          });
         }
 
-
+        else {
+          AuthService.setIsSubscribed();
+          window.location = "/";
+        }
       }
 
 
