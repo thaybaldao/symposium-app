@@ -11,7 +11,7 @@
 ## Fluxo de Interação do Usuário
 No contexto de Single Page Application e seguindo o planejamento que vem sendo executado no decorrer da realização do projeto é interessante dar continuidade à validação das funcionalidades. Uma forma procedural desse acompanhamento (e que constitui um elemento de metodologias ágeis) e checagem do fluxo de uso é através de **User Stories**. Algumas podem ser indicadas a seguir:
 
-"Como visitante do site, eu quero ...
+**"Como visitante do site, eu quero ...**
 
  * obter informações gerais do projeto para decidir sobre minha participação"
  * obter uma prévia da programação para melhor escolha de palestras"
@@ -21,7 +21,7 @@ No contexto de Single Page Application e seguindo o planejamento que vem sendo e
  * ter acesso a "perguntas frequentes" para resolver dúvidas básicas"
  * poder entrar em contato com os administradores para tirar dúvidas específicas"
     
-"Como administrador do site, eu quero ...
+**"Como administrador do site, eu quero ...**
     
  * oferecer uma interface intuitiva para atrair participantes"
  * proteção mínima contra vulnerabilidades para maior confiabilidade na interação com os usuários"
@@ -56,7 +56,7 @@ node index.js
 npm i
 expo start
 ```
-###### *Utilizando o aplicativo Expo Client, acessar o QRCode gerado*
+###### *Utilizando o aplicativo Expo Client, basta acessar o QRCode gerado*
 
 ## Organização do Projeto
 
