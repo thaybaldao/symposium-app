@@ -3,15 +3,13 @@ const pool = require("./db");
 const LocalStrategy = require('passport-local').Strategy;
 
 module.exports = function(passport){
-   //configuraremos o passport aqui
+   // Passport configuration
    async function findUser(email){
-
       const curr = await pool.query("SELECT * FROM users WHERE email = $1", [email]);
       return curr.rows[0]
    }
 
    async function findUserById(id){
-
       const curr = await pool.query("SELECT * FROM users WHERE user_id = $1", [id]);
       return curr.rows[0]
    }
@@ -29,6 +27,7 @@ module.exports = function(passport){
       }
    });
 
+   // Local authentication strategy
    passport.use(new LocalStrategy({
        usernameField: 'email',
        passwordField: 'password'
@@ -37,10 +36,10 @@ module.exports = function(passport){
            try {
                const user = await findUser(email);
 
-               // usuário inexistente
+               // When user not found
                if (!user) { return done(null, false); }
 
-               // comparando as senhas
+               // Comparing passwords
                const isValid = bcrypt.compareSync(password, user.password);
                if (!isValid) return done(null, false);
 

@@ -4,6 +4,18 @@ import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 
 import AuthService from "../Services/AuthService.js";
+import validator from "validator";
+
+const email = (value) => {
+  if (!validator.isEmail(value)) {
+    return (
+      <div className="alert alert-warning" role="alert" style={{maxWidth:"95%"}}>
+        {`${value} não é um email válido.`}
+      </div>
+    );
+  }
+};
+
 
 const required = value => {
   if (!value) {
@@ -29,6 +41,15 @@ class Login extends Component {
       loading: false,
       message: ""
     };
+  }
+
+  async componentDidMount(){
+    var response = await fetch("http://localhost:4000/sendToken", {
+        credentials: 'same-origin',
+        method: "GET"
+    });
+    var auxiliar = await response.json()
+    this.setState({token: auxiliar.csrfToken})
   }
 
   onChangeEmail(e) {
@@ -91,6 +112,7 @@ class Login extends Component {
               this.form = c;
             }}
           >
+              <meta name="csrf-token" content={this.state.token}/>
 
               <label class="modal-field" htmlFor="email">E-mail:</label>
               <Input
@@ -99,7 +121,7 @@ class Login extends Component {
                 name="email"
                 value={this.state.email}
                 onChange={this.onChangeEmail}
-                validations={[required]}
+                validations={[required,email]}
               />
 
 
@@ -129,7 +151,7 @@ class Login extends Component {
 
             {this.state.message && (
               <div className="form-group">
-                <div className="alert alert-danger" role="alert">
+                <div className="alert alert-danger" role="alert" style={{maxWidth:"95%"}}>
                   {this.state.message}
                 </div>
               </div>

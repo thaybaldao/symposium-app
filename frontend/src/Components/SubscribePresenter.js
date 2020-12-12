@@ -6,20 +6,10 @@ import Select from "react-validation/build/select";
 import AuthService from "../Services/AuthService.js";
 import validator from "validator";
 
-const email = (value) => {
-  if (!validator.isEmail(value)) {
-    return (
-      <div className="alert alert-warning" role="alert">
-        {`${value} não é um email válido.`}
-      </div>
-    );
-  }
-};
-
 const number = (value) => {
   if (!validator.isNumeric(value)) {
     return (
-      <div className="alert alert-warning" role="alert">
+      <div className="alert alert-warning" role="alert" style={{maxWidth:"95%"}}>
         {`${value} não é uma sequência de números.`}
       </div>
     );
@@ -42,7 +32,16 @@ class SubscribePresenter extends Component {
       super(props);
       this.state = { title: '', authors: '', abstract: '', user_id: AuthService.getCurrentUser().id,
                     name: '', rg: '', cpf: '', tel: '',
-                    birth: '', nivel: '', job: '', place: ''};
+                    birth: '', nivel: '', job: '', place: '', message: ''};
+  }
+
+  async componentDidMount(){
+    var response = await fetch("http://localhost:4000/sendToken", {
+        credentials: 'same-origin',
+        method: "GET"
+    });
+    var auxiliar = await response.json()
+    this.setState({token: auxiliar.csrfToken})
   }
 
   myChangeHandler = (event) => {
@@ -57,19 +56,29 @@ class SubscribePresenter extends Component {
     try {
       const body = this.state;
       body.user_id = AuthService.getCurrentUser().user_id;
-      //var id = {user_id: AuthService.getCurrentUser().user_id};
-      //var body = Object.assign({}, this.state, id);
+      var token = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
 
-      //console.log(body);
+      if (validator.isNumeric(this.state.rg)){
       const response = await fetch("http://localhost:4000/subscribe/presenter", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        credentials: 'same-origin',
+        headers: { "Content-Type": "application/json", 'XSRF-TOKEN': this.state.token },
         body: JSON.stringify(body)
       });
 
-      AuthService.setIsSubscribed();
+      var res = await response.json();
+      if (res.error) {
+        this.setState({
+          message: res.message,
+        });
+      }
 
-      window.location = "/";
+      else{
+        AuthService.setIsSubscribed();
+        window.location = "/";
+
+      }
+    }
     } catch (err) {
       console.error(err.message);
     }
@@ -80,6 +89,7 @@ class SubscribePresenter extends Component {
       <section id="inscricao">
         <div>
            <div className="inside-modal">
+              <meta name="csrf-token" content={this.state.token}/>
               <Form onSubmit={this.mySubmitHandler} ref={c => { this.form = c; }}>
                 <p class="modal-field">Nome Completo:</p>
                 <Input type="text" className="form-control" name='name' value={this.state.name} onChange={this.myChangeHandler} validations={[required]}/>
@@ -120,6 +130,14 @@ class SubscribePresenter extends Component {
                 <textarea type="text" className="form-control" name='abstract' value={this.state.abstract} onChange={this.myChangeHandler} validations={[required]}/>
 
                 <Input type='submit' className="form-control" className="button btn register-btn" value='INSCREVER'/>
+
+                {this.state.message && (
+              <div className="form-group">
+                <div className="alert alert-danger" role="alert" style={{maxWidth:"95%"}}>
+                  {this.state.message}
+                </div>
+              </div>
+            )}
               </Form>
            </div>
         </div>
