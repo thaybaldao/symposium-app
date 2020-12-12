@@ -1,11 +1,14 @@
 # Symposium App
+
+%%% photo ici
+
 #### O projeto consiste em um template de aplicação para suporte da organização de simpósios acadêmicos. Fornece uma infraestrutura mínima para divulgação do evento e gerenciamento das inscrições. A aplicação foi pensada para se adequar aos padrões de uma *Single Page Application* (SPA) com interface ituitiva para os possíveis participantes do evento. 
 
 #### A proposta contempla um frontend adequado aos própositos. As funcionalidades básicas de visualização do conteúdo informativo, de login e cadastro de participantes é realizada de forma consistente. De forma complementar, o backend também trata de forma adequada as interações com o banco de dados, organiza as rotas da aplicação, gerencia validações e autenticações, além de incluir mitigação de algumas vulnerabilidades a que a aplicação estará sujeita em ambiente web.
 
 #### Como display *default* tem-se o "I Simpósio Brasileiro Mulheres em STEM", ocorrido no ITA no início de 2020.
 
-## Fluxo de Interação do Usuário:
+## Fluxo de Interação do Usuário
 No contexto de Single Page Application e seguindo o planejamento que vem sendo executado no decorrer da realização do projeto é interessante dar continuidade à validação das funcionalidades. Uma forma procedural desse acompanhamento (e que constitui um elemento de metodologias ágeis) e checagem do fluxo de uso é através de **User Stories**. Algumas podem ser indicadas a seguir:
 
 "Como visitante do site, eu quero ...
@@ -26,7 +29,7 @@ No contexto de Single Page Application e seguindo o planejamento que vem sendo e
 
 Cada item, naturalmente, resulta em desdobramentos de implementação que fizeram parte das etapas de execução do projeto. Apesar de a metodologia ágil não ter sido aplicada integralmente, é interessante validar o benefício atingido com essa adaptação no contexto de levantamento de requisitos.
 
-## Como utilizar o projeto:
+## Como utilizar o projeto
 ### Versão Web
 #### 1. Para o front-end
 
@@ -55,7 +58,7 @@ expo start
 ```
 ###### *Utilizando o aplicativo Expo Client, acessar o QRCode gerado*
 
-## Organização do Projeto:
+## Organização do Projeto
 
 #### *./frontend*
 ##### Contém os arquivos relacionados ao *frontend* da aplicação.
@@ -78,7 +81,7 @@ expo start
 * package.json: são os *requirements* da seção
 
 
-## Estrutura Principal do Projeto:
+## Estrutura Principal do Projeto
     ├── backend                         # diretório do servidor do backend da aplicacao web
       ├── auth.js                       # estrategia de autenticacao local para login
       ├── database.sql                  # inicializacao do banco de dados
