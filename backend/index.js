@@ -60,7 +60,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Function to validate email format
-function validateEmail(email) 
+function validateEmail(email)
 {
     var re = /\S+@\S+\.\S+/;
     return re.test(email);
@@ -230,7 +230,7 @@ app.post("/subscribe/listener", async (req, res) => {
     }
 
     // return 400 status if the forms inputs aren't strings, rg is not a number or birth is not a valid date
-    if (typeof body.name !== 'string' || typeof body.rg !== 'string' || typeof body.cpf !== 'string' || typeof body.tel !== 'string' 
+    if (typeof body.name !== 'string' || typeof body.rg !== 'string' || typeof body.cpf !== 'string' || typeof body.tel !== 'string'
     || typeof body.nivel !== 'string' || typeof body.job !== 'string' || typeof body.place !== 'string' || typeof body.birth !== 'string' || !isDate(body.birth) || isNaN(body.rg) || isNaN(body.user_id)) {
       return res.status(400).json({
         error: true,
@@ -277,8 +277,8 @@ app.post("/subscribe/presenter", async (req, res) => {
     }
 
     // return 400 status if the forms inputs aren't strings, rg is not a number or birth is not a valid date
-    if (typeof body.name !== 'string' || typeof body.rg !== 'string' || typeof body.cpf !== 'string' || typeof body.tel !== 'string' 
-    || typeof body.nivel !== 'string' || typeof body.job !== 'string' || typeof body.place !== 'string' || typeof body.birth !== 'string' 
+    if (typeof body.name !== 'string' || typeof body.rg !== 'string' || typeof body.cpf !== 'string' || typeof body.tel !== 'string'
+    || typeof body.nivel !== 'string' || typeof body.job !== 'string' || typeof body.place !== 'string' || typeof body.birth !== 'string'
     || typeof body.title !== 'string' || typeof body.authors !== 'string' || typeof body.abstract !== 'string' || !isDate(body.birth) || isNaN(body.rg) || isNaN(body.user_id)) {
       return res.status(400).json({
         error: true,
@@ -319,22 +319,54 @@ passport.use(new GoogleStrategy({
     clientSecret: "wZifEU12QaN6mU1tmMT9oJEH",
     callbackURL: "/auth/google/callback"
   },
-  function(accessToken, refreshToken, profile, done) {
-    // User.findOrCreate({ googleId: profile.id }, function (err, user) {
-    //      return done(err, user);
-    //    });
+  async function(accessToken, refreshToken, profile, email, done) {
+    var emailAddress = email.emails[0].value;
+    console.log(email.emails[0].value);
+    // check email on db
+    const curr = await pool.query("SELECT * FROM users WHERE email = $1", [emailAddress]);
+    // found email in db
+    if (curr.rows[0]) {
+      console.log("Este email já está registrado.")
+      const userObj = utils.getCleanUser(curr.rows[0]);
+      return done(null, userObj);
+
+    } else {
+      const newUser = await pool.query(
+      "INSERT INTO users (email)\
+       VALUES ($1);",[emailAddress]);
+
+       const curr = await pool.query("SELECT * FROM users WHERE email = $1", [emailAddress]);
+
+       const userObj = utils.getCleanUser(curr.rows[0]);
+       console.log("newuser before callback: ", userObj);
+       return done(null, userObj);
+    }
   }
 ));
 
 app.get('/auth/google',
-  passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login'] }));
+  passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login', 'profile', 'email'] }));
 
-  app.get('/auth/google/callback',
-    passport.authenticate('google', { failureRedirect: '/login' }),
-    function(req, res) {
-      console.log("logged in");
-      res.redirect('/');
-    });
+app.get('/auth/google/callback',
+  async (req,res,next) => {
+    passport.authenticate('google', function(err, user, info) {
+      if (err) {
+        return next(err);
+      }
+      if (!user) {
+        return res.status(401).json({
+        error: true,
+        message: "Usuário não autenticado."
+      }); }
+      req.logIn(user, function(err) {
+        if (err) {
+          return next(err); }
+        console.log("Usuário autenticado");
+        return res.json({ user: user });
+      });
+    })(req, res, next);
+  }
+);
 
 // logout route
 app.get('/logout', function(req, res){

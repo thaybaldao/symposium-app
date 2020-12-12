@@ -44,7 +44,9 @@ class RegisterModal extends Component {
 
             <button type="button" className="button btn register-btn" data-toggle="modal" data-target="#loginModal">LOGIN</button>
 
-            <button type="button" className="button btn register-btn" >GOOGLE LOGIN</button>
+            <button type="button" className="button btn register-btn" >
+              <a style={{color: "white"}} href="http://localhost:4000/auth/google" target="_blank">LOGIN COM GOOGLE</a>
+            </button>
 
             <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-hidden="true">
               <div class="modal-dialog" role="document">
