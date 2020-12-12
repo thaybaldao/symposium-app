@@ -3,6 +3,9 @@
 
 #### Como display *default* tem-se o "I Simpósio Brasileiro Mulheres em STEM", ocorrido no ITA no início de 2020.
 
+## Fluxo de Interação do Usuário:
+Casos de uso 
+
 ## Como utilizar o projeto:
 ### Versão Web
 #### 1. Para o front-end
@@ -47,6 +50,8 @@ expo start
 * databse.sql: script base para as tabelas do banco de dados PostgreSQL
 * db.js: conexão com o banco de dados PostgreSQL
 * index.js: contém as rotas do *back*
+* auth.js: estratégia local de autenticação de usuários
+* utils.js: contém algumas funções auxiliares úteis ao backend
 
 #### *./mobile-app*
 ##### Contém os arquivos relacionados à versão mobile da aplicação.
@@ -88,7 +93,29 @@ expo start
         ├── index.js                    # entry point do front end
     ├── mobile-app                      # diretorio da versao mobile
     
-    
+## Banco de Dados
+O design do banco de dados é voltado para o suporte do gerenciamento de usuários relacionados ao potencial evento acadêmico. Foi utilizado o PostgreSQL pela flexibilidade de utilização, além de ser um dos gerenciadores padrão da indústria. O esquema a seguir resume a estrutura implementada.
+
+%%% photo ici
+
+Exitem, basicamente, três instâncias em que o usuário estará presente: há a tabela de usuários contendo algumas informações básicas e existem tabelas para identificação dos dois perfis de indivíduos inscritos, uma vez que um participante pode ser ouvinte ou apresentador no evento. Além disso foi definida uma tabela para armazenamento das mensagens de contato enviadas por visitantes da página.
+
 ## Segurança da Aplicação
+Quase que a totalidade das aplicações está sujeita a ataques maliciosos que exploram vulnerabilidades. No caso de aplicações web o problema se torna mais crítico pela própria condição de conexão à Internet que cria espaço para abertura dos acessos.
+
+No contexto do projeto foram implementadas táticas de mitigação para algumas vulnerabilidades como: cross-site scripting (XSS), cross-site request forgery (CSRF), clickjacking, SQL injection. A base da implementação das estratégias em questão foram baseadas em middlewares como o Helmet e o csurf. Observemos um adescrição básica:
+
+* XSS: aplicação de um filtro do Helmet para ajuste do comportamento do browser
+* CSRF: utilização do csurf para gerar tokens para validação e que são passados para o formulários da aplicação
+* Clickjacking: uso de um frameguard do Helmet e checagem de margens no JavaScript
+* SQL Injection: validação das informações (frontend e backend) antes de qualquer query ser passada ao banco de dados
+
+Além disso, foi aplicada uma estratégia de criptografia em campos sensíveis, como é o caso da senha dos usuários, para a qual toda validação e armazenamento no banco de dados é feita a partir da aplicação de uma função de hash. Pode-se citar que também foi configurada uma política de segurança do Helmet (*contentSecurityPolicy*) para cobrir casos adicionais.
+
+## Autenticações na Aplicação
+Ainda no contexto de segurança da aplicação é interessante que seja realizada autenticação do usuário logado. Além de conferir maior robustez ao sistema, a autenticação visa proteger rotas restritas e assegura o login de um usuário válido. Utilizando como base o middleware Passport do Node.js foi implementada uma estratégia local de autenticação. Os tratamentos da autenticação e da definição da estratégia local podem ser identificados no arquivo *backend/index.js*.
+
+Também foi proposta uma autenticação alternativa utilizando um serviço externo. Aplicando o protocolo OAth2.0 foi indicada a possibilidade de o usuário se conectar a partir de sua conta Google. No Google Cloud Platform foi criado um projeto e configurado o serviço de autenticação para que houvesse o suporte desejado à aplicação.
 
 ## Validações na Aplicação
+Foram aplicadas diversas estratégias de validação na aplicação. Conforme pode ser observado no presente projeto, deve haver coerência dos requests da aplicação com a estrutura definida no banco de dados. Os tamanhos reservados para os campos, tipos de dado dos campos e obrigatoriedade do preenchimento devem ser verificados nas queries propostas de interação com o banco de dados relacional. Unicidade das colunas adicionadas também são um fator importante. A grande maioria dessas verificações estão presentes no próprio arquivo de definição das rotas, em *backend/index.js*. Naturalmente, os formulários definidos nos componentes (frontend) também devem estar de acordo com a modelagem adotada.
