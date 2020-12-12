@@ -147,7 +147,7 @@ app.post("/register", async (req, res) => {
     const body = req.body;
 
     // return 400 status if username/password does not exist
-    if (!body.email || !body.password) {
+    if (!body.email || !body.password || !body.confirm_password) {
       return res.status(400).json({
         error: true,
         message: "Email ou senha são obrigatórios."
@@ -155,10 +155,18 @@ app.post("/register", async (req, res) => {
     }
 
     // return 400 status if the email is not in the valid format or the forms inputs aren't strings
-    if (!validateEmail(body.email) || typeof body.password !== 'string' || typeof body.email !== 'string') {
+    if (!validateEmail(body.email) || typeof body.password !== 'string' || typeof body.email !== 'string' || typeof body.confirm_password !== 'string') {
       return res.status(400).json({
         error: true,
         message: "Campos do formulário inconsistentes."
+      });
+    }
+
+    // return 400 status if the passwords do not match
+    if (body.password !== body.confirm_password) {
+      return res.status(400).json({
+        error: true,
+        message: "As senhas não são iguais."
       });
     }
 
