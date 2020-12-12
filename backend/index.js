@@ -261,6 +261,15 @@ app.post("/subscribe/listener", async (req, res) => {
       });
     }
 
+    const userQuery = await pool.query("SELECT * FROM users WHERE user_id = $1", [body.user_id]);
+    // not found user_id in db
+    if (!userQuery.rows[0]) {
+      return res.status(401).json({
+        error: true,
+        message: "Usuário não registrado."
+      });
+    }
+
     const curr = await pool.query("SELECT * FROM users WHERE cpf = $1", [body.cpf]);
     // found cpf in db
     if (curr.rows[0]) {
@@ -315,6 +324,15 @@ app.post("/subscribe/presenter", async (req, res) => {
       return res.status(400).json({
         error: true,
         message: "Campos do formulário inconsistentes."
+      });
+    }
+
+    const userQuery = await pool.query("SELECT * FROM users WHERE user_id = $1", [body.user_id]);
+    // not found user_id in db
+    if (!userQuery.rows[0]) {
+      return res.status(401).json({
+        error: true,
+        message: "Usuário não registrado."
       });
     }
 
