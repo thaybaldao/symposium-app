@@ -1,6 +1,7 @@
 # Symposium App
 
-%%% photo ici
+![web-version](https://user-images.githubusercontent.com/36748218/102005136-38a62a00-3cf5-11eb-8889-c359bbfa3af0.png)
+
 
 #### O projeto consiste em um template de aplicação para suporte da organização de simpósios acadêmicos. Fornece uma infraestrutura mínima para divulgação do evento e gerenciamento das inscrições. A aplicação foi pensada para se adequar aos padrões de uma *Single Page Application* (SPA) com interface ituitiva para os possíveis participantes do evento. 
 
@@ -119,7 +120,7 @@ expo start
 ## Banco de Dados
 O design do banco de dados é voltado para o suporte do gerenciamento de usuários relacionados ao potencial evento acadêmico. Foi utilizado o PostgreSQL pela flexibilidade de utilização, além de ser um dos gerenciadores padrão da indústria. O esquema a seguir resume a estrutura implementada.
 
-%%% photo ici
+![db-version](https://user-images.githubusercontent.com/36748218/102005138-3cd24780-3cf5-11eb-987f-b151eea5b3df.png)
 
 Exitem, basicamente, três instâncias em que o usuário estará presente: há a tabela de usuários contendo algumas informações básicas e existem tabelas para identificação dos dois perfis de indivíduos inscritos, uma vez que um participante pode ser ouvinte ou apresentador no evento. Além disso foi definida uma tabela para armazenamento das mensagens de contato enviadas por visitantes da página.
 
