@@ -27,7 +27,7 @@ const required = value => {
 class Register extends Component {
   constructor(props) {
       super(props);
-      this.state = { email: '', password:'', message: ''};
+      this.state = { email: '', password:'', confirm_password:'', message: ''};
   }
   myChangeHandler = (event) => {
     let nam = event.target.name;
@@ -52,7 +52,7 @@ class Register extends Component {
 
       var token = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
 
-      if ((this.state.email && validator.isEmail(this.state.email)) && this.state.password) {
+      if ((this.state.email && validator.isEmail(this.state.email)) && this.state.password && this.state.confirm_password) {
         const response = await fetch("http://localhost:4000/register", {
         method: "POST",
         credentials: 'same-origin',
@@ -88,6 +88,9 @@ class Register extends Component {
 
                 <p class="modal-field">Senha:</p>
                 <Input type="password" className="form-control" name='password' value={this.state.password} onChange={this.myChangeHandler} validations={[required]}/>
+
+                <p class="modal-field">Confirme a senha:</p>
+                <Input type="password" className="form-control" name='confirm_password' value={this.state.confirm_password} onChange={this.myChangeHandler} validations={[required]}/>
 
                 <Input type='submit' className="button btn register-btn" value='CADASTRAR'/>
 
