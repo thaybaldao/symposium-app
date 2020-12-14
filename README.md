@@ -154,6 +154,11 @@ expo start
 ## Estrutura Principal do Projeto
     ├──  mobile-app                   # diretorio da versao mobile
       ├── assets                      # imagens do app
+      ├── redux                       # arquivos redux para lidar com a inscricao e desinscricao de eventos
+        ├── actions.js
+        ├── reducers.js
+        ├── store.js
+        ├── types.js
       ├── screens                     # telas do app
         ├── Contact                      
             ├── index.js 
