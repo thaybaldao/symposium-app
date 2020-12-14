@@ -1,6 +1,4 @@
-# Symposium App
-
-# Versão Web
+# Symposium App - Versão Web
 
 ![web-version](https://user-images.githubusercontent.com/36748218/102005136-38a62a00-3cf5-11eb-8889-c359bbfa3af0.png)
 
@@ -133,7 +131,6 @@ Foram aplicadas diversas estratégias de validação na aplicação. Conforme po
 
 ## Fluxo de navegação da versão mobile
 
-
 #### *./mobile-app*
 ##### Contém os arquivos relacionados à versão mobile da aplicação.
 * package.json: são os *requirements* da seção
@@ -141,10 +138,9 @@ Foram aplicadas diversas estratégias de validação na aplicação. Conforme po
 * app.json:
 * /screens:
 
+# Symposium App - Versão Mobile
 
-# Versão Mobile
-
-A versão mobile do Symposium App foi desenvolvida com foco nos inscritos do evento. O objetivo do aplicativo é trazer mais informações do simpósio para o inscrito, como um catálogo detalhado dos possíveis eventos que o usuário pode atender e uma seção para tirar dúvidas e entrar em contato com a organização do simpósio.
+A versão mobile do Symposium App foi desenvolvida com foco nos inscritos do evento. Seu objetivo é trazer mais informações do simpósio para o inscrito, como um catálogo detalhado dos possíveis eventos que o usuário pode atender e uma seção em que o usuário pode tirar dúvidas com a organização do simpósio.
 
 ## Como utilizar o projeto
 ###### Acesse o diretório *./mobile-app*
@@ -183,7 +179,10 @@ expo start
 
 ## Fluxo de Navegação
 
+Houve uma preocupação para implementar restrições de navegação no aplicativo, definindo telas que são de navegação pública e outras que são de navegação privada. 
+
 O aplicativo é composto pelas seguintes telas:
+
 1. Landing page
 2. Login
 3. SignUp
@@ -191,7 +190,6 @@ O aplicativo é composto pelas seguintes telas:
 5. Cátalogo de eventos
 6. Contato
 
-Houve uma preocupação para implementar restrições de navegação no aplicativo, definindo telas que são de navegação pública e outras que são de navegação privada. 
 Basicamente, as três primeiras telas são consideradas públicas e, portanto, qualquer usuário consegue acessá-las. Já as três últimas telas só podem ser acessadas pelo usuário após realizado o seu processo de autenticação.
 
 ## Ações Redux implementadas
