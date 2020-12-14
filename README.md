@@ -2,7 +2,7 @@
 
 ![web-version](https://user-images.githubusercontent.com/36748218/102005136-38a62a00-3cf5-11eb-8889-c359bbfa3af0.png)
 
-#### O projeto consiste em um template de aplicação para suporte da organização de simpósios acadêmicos. Fornece uma infraestrutura mínima para divulgação do evento e gerenciamento das inscrições. A aplicação foi pensada para se adequar aos padrões de uma *Single Page Application* (SPA) com interface ituitiva para os possíveis participantes do evento. 
+#### O projeto consiste em um template de aplicação para suporte da organização de simpósios acadêmicos. Fornece uma infraestrutura mínima para divulgação do evento e gerenciamento das inscrições. A aplicação foi pensada para se adequar aos padrões de uma *Single Page Application* (SPA) com interface ituitiva para os possíveis participantes do evento.
 
 #### A proposta contempla um frontend adequado aos própositos. As funcionalidades básicas de visualização do conteúdo informativo, de login e cadastro de participantes é realizada de forma consistente. De forma complementar, o backend também trata de forma adequada as interações com o banco de dados, organiza as rotas da aplicação, gerencia validações e autenticações, além de incluir mitigação de algumas vulnerabilidades a que a aplicação estará sujeita em ambiente web.
 
@@ -20,9 +20,9 @@ No contexto de Single Page Application e seguindo o planejamento que vem sendo e
  * poder facilmente me inscrever como apresentador do simpósio para além de assitir palestras, apresentar meu trabalho acadêmico"
  * ter acesso a "perguntas frequentes" para resolver dúvidas básicas"
  * poder entrar em contato com os administradores para tirar dúvidas específicas"
-    
+
 **"Como administrador do site, eu quero ...**
-    
+
  * oferecer uma interface intuitiva para atrair participantes"
  * proteção mínima contra vulnerabilidades para maior confiabilidade na interação com os usuários"
  * aplicação no formato de template para fácil reaproveitamento"
@@ -74,7 +74,7 @@ node index.js
       ├── db.js                         # conexao com o banco de dados
       ├── index.js                      # configuracao do servidor do backend e definicao das rotas
       ├── utils.js                      # funções auxiliares
-    ├── frontend                        # diretorio do frontend da aplicacao web 
+    ├── frontend                        # diretorio do frontend da aplicacao web
       ├── public                        # conteudo estático básico de estilo
         ├── css                         # estilos externos do template
         ├── images                      # imagens da página
@@ -101,7 +101,7 @@ node index.js
         ├── App.js                      # definicao do single page app
         ├── index.js                    # entry point do front end
 
-    
+
 ## Banco de Dados
 O design do banco de dados é voltado para o suporte do gerenciamento de usuários relacionados ao potencial evento acadêmico. Foi utilizado o PostgreSQL pela flexibilidade de utilização, além de ser um dos gerenciadores padrão da indústria. O esquema a seguir resume a estrutura implementada.
 
@@ -129,15 +129,6 @@ Também foi proposta uma autenticação alternativa utilizando um serviço exter
 ## Validações na Aplicação
 Foram aplicadas diversas estratégias de validação na aplicação. Conforme pode ser observado no presente projeto, deve haver coerência dos requests da aplicação com a estrutura definida no banco de dados. Os tipos de dados dos campos e obrigatoriedade do preenchimento devem ser verificados nas queries propostas de interação com o banco de dados relacional. Unicidade das colunas adicionadas também são um fator importante. A grande maioria dessas verificações estão presentes no próprio arquivo de definição das rotas, em *backend/index.js*. Naturalmente, os formulários definidos nos componentes (frontend) também devem estar de acordo com a modelagem adotada.
 
-## Fluxo de navegação da versão mobile
-
-#### *./mobile-app*
-##### Contém os arquivos relacionados à versão mobile da aplicação.
-* package.json: são os *requirements* da seção
-* App.js:
-* app.json:
-* /screens:
-
 # Symposium App - Versão Mobile
 
 A versão mobile do Symposium App foi desenvolvida com foco nos inscritos do evento. Seu objetivo é trazer mais informações do simpósio para o inscrito, como um catálogo detalhado dos possíveis eventos que o usuário pode atender e uma seção em que o usuário pode tirar dúvidas com a organização do simpósio.
@@ -153,33 +144,39 @@ expo start
 
 <img src="https://user-images.githubusercontent.com/36748218/102029276-9b96d000-3d8c-11eb-8c25-1f8034232660.png" width="250" height="410"/>
 
+## Estrutura Principal do Projeto
+#### *./mobile-app*
+##### Contém os arquivos relacionados à versão mobile da aplicação.
+* package.json: são os *requirements* da seção
+* App.js: arquivo principal de montagem do aplicativo
+* /screens: telas do aplicativo
 
 ## Estrutura Principal do Projeto
 
-├── mobile-app                      # diretorio da versao mobile
-    ├── assets                      # imagens do app
-    ├── screens                     # telas do app
-        ├── Contact
-            ├── Contact.js  
-        ├── Events
-            ├── Events.js
-            ├── MyCard.js  
-        ├── Home
-            ├── Clock.js
-            ├── Home.js 
-        ├── Landing
-            ├── Landing.js
-        ├── Profile
-            ├── Profile.js
-        ├── SignIn
-            ├── SignIn.js
-        ├── SignUp
-            ├── SignUp.js
-    ├── App.js                      # definicao do app
+├── mobile-app                    # diretorio da versao mobile
+  ├── assets                      # imagens do app
+  ├── screens                     # telas do app
+    ├── Contact
+      ├── index.js
+    ├── Events
+      ├── index.js
+      ├── MyCard.js  
+    ├── Home
+      ├── Clock.js
+      ├── index.js
+    ├── Landing
+      ├── index.js
+    ├── Profile
+      ├── index.js
+    ├── SignIn
+      ├── index.js
+    ├── SignUp
+      ├── index.js
+  ├── App.js                      # definicao do app
 
 ## Fluxo de Navegação
 
-Houve uma preocupação para implementar restrições de navegação no aplicativo, definindo telas que são de navegação pública e outras que são de navegação privada. 
+Houve uma preocupação para implementar restrições de navegação no aplicativo, definindo telas que são de navegação pública e outras que são de navegação privada.
 
 O aplicativo é composto pelas seguintes telas:
 
