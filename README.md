@@ -1,7 +1,8 @@
 # Symposium App
 
-![web-version](https://user-images.githubusercontent.com/36748218/102005136-38a62a00-3cf5-11eb-8889-c359bbfa3af0.png)
+# Versão Web
 
+![web-version](https://user-images.githubusercontent.com/36748218/102005136-38a62a00-3cf5-11eb-8889-c359bbfa3af0.png)
 
 #### O projeto consiste em um template de aplicação para suporte da organização de simpósios acadêmicos. Fornece uma infraestrutura mínima para divulgação do evento e gerenciamento das inscrições. A aplicação foi pensada para se adequar aos padrões de uma *Single Page Application* (SPA) com interface ituitiva para os possíveis participantes do evento. 
 
@@ -31,7 +32,6 @@ No contexto de Single Page Application e seguindo o planejamento que vem sendo e
 Cada item, naturalmente, resulta em desdobramentos de implementação que fizeram parte das etapas de execução do projeto. Apesar de a metodologia ágil não ter sido aplicada integralmente, é interessante validar o benefício atingido com essa adaptação no contexto de levantamento de requisitos.
 
 ## Como utilizar o projeto
-### Versão Web
 #### 1. Para o front-end
 
 ###### Acesse o diretório *./frontend*
@@ -51,17 +51,6 @@ node index.js
 ```
 ###### *Backend* deverá ser executado em *http://localhost:4000/*
 
-### Versão Mobile
-###### Acesse o diretório *./mobile-app*
-```shell
-npm i
-expo start
-```
-###### *Utilizando o aplicativo Expo Client, basta acessar o QRCode gerado com seu smartphone*
-###### A versão mobile da aplicação é uma das partes centrais do projeto.
-
-<img src="https://user-images.githubusercontent.com/36748218/102029276-9b96d000-3d8c-11eb-8c25-1f8034232660.png" width="250" height="410"/>
-
 ## Organização do Projeto
 
 #### *./frontend*
@@ -79,14 +68,6 @@ expo start
 * index.js: contém as rotas do *back*
 * auth.js: estratégia local de autenticação de usuários
 * utils.js: contém algumas funções auxiliares úteis ao backend
-
-#### *./mobile-app*
-##### Contém os arquivos relacionados à versão mobile da aplicação.
-* package.json: são os *requirements* da seção
-* App.js:
-* app.json:
-* /screens:
-
 
 ## Estrutura Principal do Projeto
     ├── backend                         # diretório do servidor do backend da aplicacao web
@@ -121,16 +102,7 @@ expo start
           ├── AuthService.js            # servico de autenticacao do login
         ├── App.js                      # definicao do single page app
         ├── index.js                    # entry point do front end
-    ├── mobile-app                      # diretorio da versao mobile
-        ├── assets                      #
-        ├── screens                     #
-            ├── Home
-            ├── Landing
-            ├── Profile
-            ├── SignIn
-            ├── SignUp
-        ├── App.js                      #
-        ├── app.json                    #
+
     
 ## Banco de Dados
 O design do banco de dados é voltado para o suporte do gerenciamento de usuários relacionados ao potencial evento acadêmico. Foi utilizado o PostgreSQL pela flexibilidade de utilização, além de ser um dos gerenciadores padrão da indústria. O esquema a seguir resume a estrutura implementada.
@@ -158,3 +130,71 @@ Também foi proposta uma autenticação alternativa utilizando um serviço exter
 
 ## Validações na Aplicação
 Foram aplicadas diversas estratégias de validação na aplicação. Conforme pode ser observado no presente projeto, deve haver coerência dos requests da aplicação com a estrutura definida no banco de dados. Os tipos de dados dos campos e obrigatoriedade do preenchimento devem ser verificados nas queries propostas de interação com o banco de dados relacional. Unicidade das colunas adicionadas também são um fator importante. A grande maioria dessas verificações estão presentes no próprio arquivo de definição das rotas, em *backend/index.js*. Naturalmente, os formulários definidos nos componentes (frontend) também devem estar de acordo com a modelagem adotada.
+
+## Fluxo de navegação da versão mobile
+
+
+#### *./mobile-app*
+##### Contém os arquivos relacionados à versão mobile da aplicação.
+* package.json: são os *requirements* da seção
+* App.js:
+* app.json:
+* /screens:
+
+
+# Versão Mobile
+
+A versão mobile do Symposium App foi desenvolvida com foco nos inscritos do evento. O objetivo do aplicativo é trazer mais informações do simpósio para o inscrito, como um catálogo detalhado dos possíveis eventos que o usuário pode atender e uma seção para tirar dúvidas e entrar em contato com a organização do simpósio.
+
+## Como utilizar o projeto
+###### Acesse o diretório *./mobile-app*
+```shell
+npm i
+expo start
+```
+###### *Utilizando o aplicativo Expo Client, basta acessar o QRCode gerado com seu smartphone*
+###### A versão mobile da aplicação é uma das partes centrais do projeto.
+
+<img src="https://user-images.githubusercontent.com/36748218/102029276-9b96d000-3d8c-11eb-8c25-1f8034232660.png" width="250" height="410"/>
+
+
+## Estrutura Principal do Projeto
+
+├── mobile-app                      # diretorio da versao mobile
+    ├── assets                      # imagens do app
+    ├── screens                     # telas do app
+        ├── Contact
+            ├── Contact.js  
+        ├── Events
+            ├── Events.js
+            ├── MyCard.js  
+        ├── Home
+            ├── Clock.js
+            ├── Home.js 
+        ├── Landing
+            ├── Landing.js
+        ├── Profile
+            ├── Profile.js
+        ├── SignIn
+            ├── SignIn.js
+        ├── SignUp
+            ├── SignUp.js
+    ├── App.js                      # definicao do app
+
+## Fluxo de Navegação
+
+O aplicativo é composto pelas seguintes telas:
+1. Landing page
+2. Login
+3. SignUp
+4. Home
+5. Cátalogo de eventos
+6. Contato
+
+Houve uma preocupação para implementar restrições de navegação no aplicativo, definindo telas que são de navegação pública e outras que são de navegação privada. 
+Basicamente, as três primeiras telas são consideradas públicas e, portanto, qualquer usuário consegue acessá-las. Já as três últimas telas só podem ser acessadas pelo usuário após realizado o seu processo de autenticação.
+
+## Ações Redux implementadas
+
+- `SUBSCRIBE`: inscreve o usuário em um evento pertencente ao catálogo de eventos.
+- `UNSUBSCRIBE`: desinscreve o usuário em um evento pertencente ao catálogo de eventos.
