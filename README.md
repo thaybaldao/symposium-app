@@ -58,6 +58,7 @@ npm i
 expo start
 ```
 ###### *Utilizando o aplicativo Expo Client, basta acessar o QRCode gerado com seu smartphone*
+###### A versão mobile da aplicação é uma das partes centrais do projeto.
 
 ## Organização do Projeto
 
@@ -80,6 +81,9 @@ expo start
 #### *./mobile-app*
 ##### Contém os arquivos relacionados à versão mobile da aplicação.
 * package.json: são os *requirements* da seção
+* App.js:
+* app.json:
+* /screens:
 
 
 ## Estrutura Principal do Projeto
