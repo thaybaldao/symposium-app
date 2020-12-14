@@ -190,6 +190,9 @@ O aplicativo é composto pelas seguintes telas:
 5. Cátalogo de eventos
 6. Contato
 
+O fluxo de navegação entre essas telas está apresenta no esquemático abaixo:
+![Fluxo de navegação no App](fluxo.png)
+
 Basicamente, as três primeiras telas são consideradas públicas e, portanto, qualquer usuário consegue acessá-las. Já as três últimas telas só podem ser acessadas pelo usuário após realizado o seu processo de autenticação.
 
 ## Ações Redux implementadas
