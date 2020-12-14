@@ -60,6 +60,8 @@ expo start
 ###### *Utilizando o aplicativo Expo Client, basta acessar o QRCode gerado com seu smartphone*
 ###### A versão mobile da aplicação é uma das partes centrais do projeto.
 
+<img src="https://user-images.githubusercontent.com/36748218/102029276-9b96d000-3d8c-11eb-8c25-1f8034232660.png" width="250" height="410"/>
+
 ## Organização do Projeto
 
 #### *./frontend*
