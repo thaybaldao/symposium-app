@@ -152,27 +152,24 @@ expo start
 * /screens: telas do aplicativo
 
 ## Estrutura Principal do Projeto
-
-├── mobile-app                    # diretorio da versao mobile
-  ├── assets                      # imagens do app
-  ├── screens                     # telas do app
-    ├── Contact
-      ├── index.js
-    ├── Events
-      ├── index.js
-      ├── MyCard.js  
-    ├── Home
-      ├── Clock.js
-      ├── index.js
-    ├── Landing
-      ├── index.js
-    ├── Profile
-      ├── index.js
-    ├── SignIn
-      ├── index.js
-    ├── SignUp
-      ├── index.js
-  ├── App.js                      # definicao do app
+    ├──  mobile-app                   # diretorio da versao mobile
+      ├── assets                      # imagens do app
+      ├── screens                     # telas do app
+        ├── Contact                      
+            ├── index.js 
+        ├── Events                  
+            ├── index.js             
+            ├── MyCard.js             
+        ├── Home                  
+            ├── Clock.js           
+            ├── index.js
+        ├── Landing                
+            ├── index.js 
+        ├── SignIn                
+            ├── index.js 
+        ├── SignUp                
+            ├── index.js 
+    ├── App.js                        # definicao do app
 
 ## Fluxo de Navegação
 
