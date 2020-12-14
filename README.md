@@ -120,6 +120,15 @@ expo start
         ├── App.js                      # definicao do single page app
         ├── index.js                    # entry point do front end
     ├── mobile-app                      # diretorio da versao mobile
+        ├── assets                      #
+        ├── screens                     #
+            ├── Home
+            ├── Landing
+            ├── Profile
+            ├── SignIn
+            ├── SignUp
+        ├── App.js                      #
+        ├── app.json                    #
     
 ## Banco de Dados
 O design do banco de dados é voltado para o suporte do gerenciamento de usuários relacionados ao potencial evento acadêmico. Foi utilizado o PostgreSQL pela flexibilidade de utilização, além de ser um dos gerenciadores padrão da indústria. O esquema a seguir resume a estrutura implementada.
