@@ -59,7 +59,7 @@ const LandingScreen = ({ navigation }) => {
       </View>
       <View style={styles.bottomContainer}>
         <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('Sign In')}>
-          <Text style={styles.btnText}>LOGIN</Text>
+          <Text style={styles.btnText}>ENTRAR</Text>
         </TouchableOpacity>
       </View>
     </View>

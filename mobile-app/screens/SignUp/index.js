@@ -5,7 +5,7 @@ import Icon from '../../assets/icon.png';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f47f7f',
+    backgroundColor: '#ffffff',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
   },
   inputView:{
     width:"80%",
-    backgroundColor:"#FFF",
+    backgroundColor:"#f2d0d0",
     borderRadius:25,
     height:50,
     marginBottom:20,
@@ -31,7 +31,8 @@ const styles = StyleSheet.create({
     padding:20
   },
   inputText:{
-    height:50
+    height:50,
+    color:"#560707"
   },
   forgot:{
     color:"white",
@@ -83,7 +84,7 @@ const SignUpScreen = ({ onSignUp }) => {
          onChangeText={passwordAgain => setPasswordAgain(passwordAgain)}
          placeholder="Senha Novamente"/>
      </View>
-     <TouchableOpacity style={styles.loginBtn} onPress={onSignUp} >
+     <TouchableOpacity style={styles.loginBtn} onPress={onSignUp(email, password)} >
        <Text style={styles.loginText}>CADASTRAR</Text>
      </TouchableOpacity>
     </View>

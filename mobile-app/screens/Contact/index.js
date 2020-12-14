@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image } from 'react-native';
+import { Alert, StyleSheet, Text, View, TextInput, TouchableOpacity, Image } from 'react-native';
 import Icon from '../../assets/icon.png';
 
 const styles = StyleSheet.create({
@@ -26,7 +26,8 @@ const styles = StyleSheet.create({
     backgroundColor:"#FFF",
     borderRadius:25,
     height:50,
-    marginBottom:20,
+    marginBottom:10,
+    marginTop:10,
     justifyContent:"center",
     padding:20
   },
@@ -53,16 +54,39 @@ const styles = StyleSheet.create({
   signupText:{
     marginTop: 10,
     color:"#560707"
+  },
+  title:{
+    fontWeight:"bold",
+    fontSize:40,
+    color:"#560707",
+    marginBottom: 10
+  },
+  instructions:{
+    fontSize:16,
+    color:"#560707",
+    width:"70%",
+    textAlign: 'center',
   }
 });
 
-const SignInScreen = ({ onSignIn, navigation }) => {
+const Contact = () => {
+  const [name, setName] = React.useState('');
   const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
+  const [message, setMessage] = React.useState('');
 
   return (
     <View style={styles.container}>
-       <Image source={Icon} style={styles.image} />
+      <Text style={{fontWeight:"bold",fontSize:24,color:"#50010C", marginBottom: 15}}>CONTATO</Text>
+       <Text style={styles.instructions}>Tem alguma dúvida?</Text>
+       <Text style={[styles.instructions, {marginBottom: 10}]}>Envie uma mensagem!</Text>
+       <View style={styles.inputView} >
+         <TextInput
+           style={styles.inputText}
+           placeholder="Nome"
+           value={name}
+           onChangeText={name => setName(name)}
+        />
+       </View>
        <View style={styles.inputView} >
          <TextInput
            style={styles.inputText}
@@ -73,21 +97,17 @@ const SignInScreen = ({ onSignIn, navigation }) => {
        </View>
        <View style={styles.inputView} >
          <TextInput
-           secureTextEntry
            style={styles.inputText}
-           placeholder="Senha"
-           value={password}
-           onChangeText={password => setPassword(password)}
+           placeholder="Mensagem"
+           value={message}
+           onChangeText={message => setMessage(message)}
         />
        </View>
-       <TouchableOpacity style={styles.loginBtn} onPress={onSignIn(email, password)}>
-         <Text style={styles.loginText}>LOGIN</Text>
-       </TouchableOpacity>
-       <TouchableOpacity onPress={() => navigation.navigate('Sign Up')}>
-         <Text style={styles.signupText}>Não possui conta? Cadastre-se!</Text>
+       <TouchableOpacity style={styles.loginBtn}>
+         <Text style={styles.loginText}>ENVIAR</Text>
        </TouchableOpacity>
      </View>
   );
 };
 
-export default SignInScreen;
+export default Contact;

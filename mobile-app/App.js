@@ -5,44 +5,61 @@ import {
   getFocusedRouteNameFromRoute,
 } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Button } from 'react-native';
+import { StyleSheet, TouchableOpacity, Text } from 'react-native';
 
 import LandingScreen from './screens/Landing';
 import SignInScreen from './screens/SignIn';
 import SignUpScreen from './screens/SignUp';
 import HomeScreen from './screens/Home';
-import ProfileScreen from './screens/Profile';
+import EventsScreen from './screens/Events';
+import ContactScreen from './screens/Contact';
+import Icon from 'react-native-vector-icons/Feather';
+
+import { Provider } from "react-redux";
+import configureStore from "./redux/store";
 
 const Tab = createBottomTabNavigator();
 
 const HomeTabs = () => {
   return (
-    <Tab.Navigator>
-      <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Profile" component={ProfileScreen} />
+    <Tab.Navigator
+      tabBarOptions={{
+          activeTintColor: '#560707',
+          inactiveTintColor: '#d25d5d',
+      }}>
+      <Tab.Screen name="HOME" component={HomeScreen} />
+      <Tab.Screen name="EVENTOS" component={EventsScreen} />
+      <Tab.Screen name="CONTATO" component={ContactScreen} />
     </Tab.Navigator>
-  );
-};
-
-const Drawer = createDrawerNavigator();
-
-const HomeDrawer = () => {
-  return (
-    <Drawer.Navigator>
-      <Drawer.Screen name="Home" component={HomeTabs} />
-    </Drawer.Navigator>
   );
 };
 
 const RootStack = createStackNavigator();
 
+const styles = StyleSheet.create({
+  signOutBtn:{
+    backgroundColor:"#560707",
+    alignItems:"center",
+    justifyContent:"center",
+    margin:10,
+    borderRadius:5,
+  },
+  signOutText:{
+    color:"#FFFFFF",
+    alignItems:"center",
+    justifyContent:"center",
+    margin:5
+  }
+});
+
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = React.useState(false);
 
-  const handleSignIn = () => {
+  const handleSignIn = (email, password) => (event) => {
     // TODO implement real sign in mechanism
+    console.log(email)
+    console.log(password)
 
     setIsAuthenticated(true);
   };
@@ -53,31 +70,27 @@ const App = () => {
     setIsAuthenticated(false);
   };
 
-  const handleSignUp = () => {
+  const handleSignUp = (email, password) => (event) => {
     // TODO implement real sign up mechanism
-
+    console.log(email)
+    console.log(password)
     setIsAuthenticated(true);
   };
 
 return (
+  <Provider store={configureStore()}>
   <NavigationContainer>
     <RootStack.Navigator>
       {isAuthenticated ? (
         <RootStack.Screen
           name="Home"
-          component={HomeDrawer}
+          component={HomeTabs}
           options={({ route, navigation }) => ({
-            headerTitle: getFocusedRouteNameFromRoute(route),
-            headerLeft: () => (
-              <Button
-                onPress={() =>
-                  navigation.dispatch(DrawerActions.toggleDrawer())
-                }
-                title="Menu"
-              />
-            ),
+            headerTitle: '',
             headerRight: () => (
-              <Button onPress={handleSignOut} title="Sign Out" />
+              <TouchableOpacity style={styles.signOutBtn} onPress={handleSignOut}>
+                <Text style={styles.signOutText}>SAIR</Text>
+              </TouchableOpacity>
             ),
           })}
         />
@@ -102,6 +115,7 @@ return (
     )}
     </RootStack.Navigator>
   </NavigationContainer>
+  </Provider>
   );
 };
 
