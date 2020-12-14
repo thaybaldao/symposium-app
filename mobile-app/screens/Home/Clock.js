@@ -51,6 +51,7 @@ class Clock extends React.Component {
     const { days, hours, mins, secs } = this.state
     return (
       <View style={styles.container}>
+        <Text style={{fontWeight:"bold",fontSize:40,color:"#560707", marginBottom:20}}>II SMSTEM</Text>
         <Text style={{fontWeight:"bold",fontSize:30,color:"#560707", marginBottom:20}}>SAVE THE DATE</Text>
         <Text style={{fontWeight:"bold",fontSize:50,marginBottom:50, color: "#000000"}}>{`${days} : ${hours} : ${mins} : ${secs}`}</Text>
       </View>
